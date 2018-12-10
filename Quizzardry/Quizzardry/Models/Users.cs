@@ -7,5 +7,6 @@ namespace Quizzardry.Models
 {
     public class Users
     {
+
     }
 }
