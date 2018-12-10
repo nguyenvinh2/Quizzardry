@@ -36,6 +36,11 @@ namespace Quizzardry
                 options.UseSqlServer(Configuration.GetConnectionString("LocalQuestionsDB"));
             });
 
+            services.AddDbContext<GamesDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("LocalGamesDB"));
+            });
+
             services.AddScoped<IPlayer, PlayerService>();
         }
 
