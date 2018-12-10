@@ -110,7 +110,7 @@ namespace QuizzardryTest
         [Fact]
         public async System.Threading.Tasks.Task DeletePlayerTestAsync()
         {
-            DbContextOptions<GamesDbContext> options = new DbContextOptionsBuilder<GamesDbContext>().UseInMemoryDatabase("UpdatePlayer").Options;
+            DbContextOptions<GamesDbContext> options = new DbContextOptionsBuilder<GamesDbContext>().UseInMemoryDatabase("DeletePlayer").Options;
 
             using (GamesDbContext context = new GamesDbContext(options))
             {
@@ -130,6 +130,7 @@ namespace QuizzardryTest
                 foundPlayer.Score = 250;
 
                 context.Remove(foundPlayer);
+                await context.SaveChangesAsync();
                 Player deletedPlayer = await context.Players.FirstOrDefaultAsync(player => player.ID == 1);
 
                 Assert.True(deletedPlayer == null);

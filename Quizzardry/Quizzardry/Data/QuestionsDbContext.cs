@@ -38,5 +38,7 @@ namespace Quizzardry.Data
                 }
             );
         }
+
+        public DbSet<Questions> Questions { get; set; }
     }
 }
