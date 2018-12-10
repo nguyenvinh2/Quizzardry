@@ -5,15 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Quizzardry.Models;
+using Newtonsoft.Json;
 
 namespace Quizzardry.Hubs
 {
-    public class TriviaHub:Hub
+    public class TriviaHub : Hub
     {
-
-        public async Task<IActionResult> SendMessage(string user)
+        public async Task SendMessage(string user, string message)
         {
-            await Clients.All.SendAsync("ReceiveMessage", user);
+            await Clients.All.SendAsync("ReceiveMessage", user, message);
         }
 
     }

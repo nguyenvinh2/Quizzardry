@@ -1,17 +1,15 @@
 ﻿@page
+@using Quizzardry.Models;
 @model Quizzardry.Pages.IndexModel
 @{
-    string aspnet = "@aspnet";
 }
 
 Hey there
 
 <div class="col-6">
-  User..........<input type="text" id="userInput" />
-  <br />
-  <input type="button" id="sendButton" value="SendMessage" />
+  <form method="post">
+    User..........<input asp-for="Username.username" type="text"/>
+    <br />
+    <button class="login-info manage" type="submit" asp-page-handler="update">Enter</button>
+  </form>
 </div>
-
-
-<script src="~/lib/@aspnet/signalr/dist/browser/signalr.js"></script>
-<script src="~/js/chat.js"></script>

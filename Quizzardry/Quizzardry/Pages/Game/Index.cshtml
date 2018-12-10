@@ -2,18 +2,32 @@
 @model Quizzardry.Pages.Game.IndexModel
 @{
   ViewData["Title"] = "Index";
-    string aspnet = "@aspnet";
+  string aspnet = "@aspnet";
 }
-
 <h2>Index</h2>
 
-<div class="row">
-  <div class="col-6">&nbsp;</div>
-  <div class="col-6">
-    <ul id="messagesList"></ul>
+<div class="container">
+  <div class="row">&nbsp;</div>
+  <div class="row">
+    <div class="col-6">&nbsp;</div>
+    <div class="col-6">
+      <input type="hidden" id="userInput" value="@Model.user" />
+        <br />
+        Message...<input type="text" id="messageInput" />
+        <input type="button" id="sendButton" value="SendMessage" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <hr />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">&nbsp;</div>
+    <div class="col-6">
+      <ul id="messagesList"></ul>
+    </div>
   </div>
 </div>
-
-
 <script src="~/lib/@aspnet/signalr/dist/browser/signalr.js"></script>
 <script src="~/js/chat.js"></script>
