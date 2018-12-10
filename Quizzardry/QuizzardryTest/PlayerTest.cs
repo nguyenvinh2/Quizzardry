@@ -71,6 +71,70 @@ namespace QuizzardryTest
                 Assert.True(foundPlayer.Name == "Farkus");
             }
         }
+
+        /// <summary>
+        /// Tests updating a player
+        /// </summary>
+        [Fact]
+        public async System.Threading.Tasks.Task UpdatePlayerTestAsync()
+        {
+            DbContextOptions<GamesDbContext> options = new DbContextOptionsBuilder<GamesDbContext>().UseInMemoryDatabase("UpdatePlayer").Options;
+
+            using (GamesDbContext context = new GamesDbContext(options))
+            {
+                Player newPlayer = new Player()
+                {
+                    ID = 1,
+                    RoomID = "1",
+                    Name = "Farkus",
+                    Score = 500,
+                    Toad = true
+                };
+
+                context.Add(newPlayer);
+                await context.SaveChangesAsync();
+
+                Player foundPlayer = await context.Players.FirstOrDefaultAsync(player => player.ID == 1);
+                foundPlayer.Score = 250;
+
+                context.Update(foundPlayer);
+                Player updatedPlayer = await context.Players.FirstOrDefaultAsync(player => player.ID == 1);
+
+                Assert.True(updatedPlayer.Score == 250);
+            }
+        }
+
+        /// <summary>
+        /// Tests delete a player
+        /// </summary>
+        [Fact]
+        public async System.Threading.Tasks.Task DeletePlayerTestAsync()
+        {
+            DbContextOptions<GamesDbContext> options = new DbContextOptionsBuilder<GamesDbContext>().UseInMemoryDatabase("UpdatePlayer").Options;
+
+            using (GamesDbContext context = new GamesDbContext(options))
+            {
+                Player newPlayer = new Player()
+                {
+                    ID = 1,
+                    RoomID = "1",
+                    Name = "Farkus",
+                    Score = 500,
+                    Toad = true
+                };
+
+                context.Add(newPlayer);
+                await context.SaveChangesAsync();
+
+                Player foundPlayer = await context.Players.FirstOrDefaultAsync(player => player.ID == 1);
+                foundPlayer.Score = 250;
+
+                context.Remove(foundPlayer);
+                Player deletedPlayer = await context.Players.FirstOrDefaultAsync(player => player.ID == 1);
+
+                Assert.True(deletedPlayer == null);
+            }
+        }
     }
 }
 ;
