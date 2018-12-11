@@ -29,15 +29,17 @@ namespace Quizzardry.Hubs
                     _connections.Add(key, connectionId);
                 }
             }
-  
+
+        public Dictionary<T, Player> GetConnections()
+        {
+            return _connections;
+
         }
 
-       
-        public List<Player> GetConnections()
+        public List<Player> GetList()
         {
             var connections = _connections.Select(x => x.Value).ToList();
             return connections;
-
         }
     }
 }
