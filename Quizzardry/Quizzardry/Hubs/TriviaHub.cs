@@ -14,25 +14,33 @@ namespace Quizzardry.Hubs
 {
     public class TriviaHub : Hub
     {
-        private readonly static StorageHub<string> _connections =
-    new StorageHub<string>();
+        private readonly static StorageHub<Guid> _connections =
+    new StorageHub<Guid>();
 
         public async Task SendMessage(string user, string message)
         {
             await Clients.All.SendAsync("ReceiveMessage", user, message);
         }
 
-        public async Task SendUser(string user)
+        public async Task SendUser(string user, Guid id)
         {
-            await OnConnected(user);
-            var userList = _connections.GetConnections();
+            await OnConnected(user, id);
+            List<Player> userList = _connections.GetList();
             await Clients.All.SendAsync("ReceiveUser", userList);
         }
 
-        public Task OnConnected(string user)
+        public Task OnConnected(string user, Guid id)
         {
-            _connections.Add(Context.ConnectionId, user);
-
+            bool exists = false;
+            Dictionary<Guid, Player> userList = _connections.GetConnections();
+            exists = userList.ContainsKey(id);
+            if (!exists)
+            {
+                Player NewPlayer = new Player();
+                NewPlayer.Name = user;
+                NewPlayer.Score = 0;
+                _connections.Add(NewPlayer.ID, NewPlayer);
+            }
             return base.OnConnectedAsync();
         }
 
