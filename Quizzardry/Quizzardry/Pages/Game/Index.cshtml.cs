@@ -10,17 +10,20 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using System.Dynamic;
 using Quizzardry.Models;
+using Quizzardry.Hubs;
+using Quizzardry.Models.Interfaces;
+using Microsoft.AspNetCore.SignalR;
 
 namespace Quizzardry.Pages.Game
 {
     public class IndexModel : PageModel
     {
-        public string user { get; set; }
-        public void OnGet()
+        public Player Player{ get; set; }
+        public IActionResult OnGet()
         {
             var userJSON = HttpContext.Session.GetString("user");
-            var username = JsonConvert.DeserializeObject<Users>(userJSON);
-            user = username.username;
+            Player = JsonConvert.DeserializeObject<Player>(userJSON);
+            return Page();
         }
     }
 }
