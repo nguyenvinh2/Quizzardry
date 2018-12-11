@@ -11,11 +11,17 @@ connection.start().then(function(){
   return console.error(err.toString());
 });
 
-connection.on("ReceiveUser", function (user) {
-  var encodedMsg = user + " has joined the game";
-  var li = document.createElement("li");
-  li.textContent = encodedMsg;
-  document.getElementById("userList").appendChild(li);
+connection.on("ReceiveUser", function (userList) {
+  var users = document.getElementById("userList");
+  while (users.firstChild) {
+    users.removeChild(users.firstChild);
+  }
+  for (let i = 0; i < userList.length; i++) {
+    var encodedMsg = userList[i] + " has joined the game";
+    var li = document.createElement("li");
+    li.textContent = encodedMsg;
+    document.getElementById("userList").appendChild(li);
+  }
 });
 
 connection.on("ReceiveMessage", function (user, message) {
@@ -30,6 +36,13 @@ document.getElementById("sendButton").addEventListener("click", function (event)
   var user = document.getElementById("userInput").value;
   var message = document.getElementById("messageInput").value;
   connection.invoke("SendMessage", user, message).catch(function (err) {
+    return console.error(err.toString());
+  });
+  event.preventDefault();
+});
+
+$("#voteButton").click(function () {
+  connection.invoke("SendVote").catch(function (err) {
     return console.error(err.toString());
   });
   event.preventDefault();
