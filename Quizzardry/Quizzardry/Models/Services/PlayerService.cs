@@ -41,7 +41,7 @@ namespace Quizzardry.Models.Services
         /// </summary>
         /// <param name="id">The id of the player to get from the database</param>
         /// <returns>A player object</returns>
-        public async Task<Player> GetPlayer(int id)
+        public async Task<Player> GetPlayer(Guid id)
         {
             return await _context.Players.FirstOrDefaultAsync(p => p.ID == id);
         }
