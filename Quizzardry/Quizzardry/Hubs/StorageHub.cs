@@ -30,9 +30,6 @@ namespace Quizzardry.Hubs
                 }
             }
 
-        }
-
-
         public Dictionary<T, Player> GetConnections()
         {
             return _connections;
