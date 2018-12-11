@@ -1,0 +1,15 @@
+﻿@page
+@using Quizzardry.Models;
+@model Quizzardry.Pages.IndexModel
+@{
+}
+
+Hey there
+
+<div class="col-6">
+  <form method="post">
+    User..........<input asp-for="Username.username" type="text"/>
+    <br />
+    <button class="login-info manage" type="submit" asp-page-handler="update">Enter</button>
+  </form>
+</div>
