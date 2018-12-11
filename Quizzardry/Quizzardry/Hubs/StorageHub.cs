@@ -29,6 +29,7 @@ namespace Quizzardry.Hubs
                     _connections.Add(key, connectionId);
                 }
             }
+        }
 
         public Dictionary<T, Player> GetConnections()
         {
