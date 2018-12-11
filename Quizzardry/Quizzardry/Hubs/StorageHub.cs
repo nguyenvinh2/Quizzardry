@@ -44,4 +44,3 @@ namespace Quizzardry.Hubs
         }
     }
 }
-
