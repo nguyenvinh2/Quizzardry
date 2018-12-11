@@ -37,6 +37,7 @@ namespace Quizzardry.Hubs
             if (!exists)
             {
                 Player NewPlayer = new Player();
+                NewPlayer.ID = id;
                 NewPlayer.Name = user;
                 NewPlayer.Score = 0;
                 _connections.Add(NewPlayer.ID, NewPlayer);
