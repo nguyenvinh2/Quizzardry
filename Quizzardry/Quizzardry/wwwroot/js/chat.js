@@ -56,7 +56,7 @@ $("#voteButton").click(function () {
 $("#resultButton").click(function () {
   var user = document.getElementById("userInput").value;
   var userGuid = document.getElementById("userInputGuid").value;
-  connection.invoke("SendUser", user, userGuid).catch(function (err) {
+  connection.invoke("SubmitAnswers").catch(function (err) {
     return console.error(err.toString());
   });
   event.preventDefault();

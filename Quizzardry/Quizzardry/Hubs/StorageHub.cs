@@ -42,5 +42,10 @@ namespace Quizzardry.Hubs
             var connections = _connections.Select(x => x.Value).ToList();
             return connections;
         }
+
+        public Player GetPlayer(T id)
+        {
+            return _connections[id];
+        }
     }
 }
