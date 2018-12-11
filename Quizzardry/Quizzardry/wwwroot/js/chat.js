@@ -1,6 +1,7 @@
 ﻿"use strict";
 
 var connection = new signalR.HubConnectionBuilder().withUrl("/triviaHub").build();
+var count = 0;
 
 connection.start().then(function () {
     var user = document.getElementById("userInput").value;
@@ -23,6 +24,11 @@ connection.on("ReceiveUser", function (userList) {
         var li = document.createElement("li");
         li.textContent = encodedMsg;
         document.getElementById("userList").appendChild(li);
+        if (userList[i].isAdmin) {
+            document.getElementById("resultButton").classList.remove("removeMe");
+        } else {
+            document.getElementById("resultButton").classList.add("removeMe");
+        }
     }
 });
 
@@ -56,7 +62,7 @@ $("#voteButton").click(function () {
 $("#resultButton").click(function () {
   var user = document.getElementById("userInput").value;
   var userGuid = document.getElementById("userInputGuid").value;
-  connection.invoke("SendUser", user, userGuid).catch(function (err) {
+  connection.invoke("SubmitAnswers").catch(function (err) {
     return console.error(err.toString());
   });
   event.preventDefault();

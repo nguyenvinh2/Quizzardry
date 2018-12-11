@@ -40,6 +40,8 @@ namespace Quizzardry.Hubs
                 NewPlayer.ID = id;
                 NewPlayer.Name = user;
                 NewPlayer.Score = 0;
+                NewPlayer.HasVoted = false;
+                NewPlayer.IsAdmin = _connections.Count == 0 ? true : false;
                 _connections.Add(NewPlayer.ID, NewPlayer);
             }
             return base.OnConnectedAsync();
@@ -47,14 +49,22 @@ namespace Quizzardry.Hubs
 
         public void AddPoints(Guid userGuid, string answer)
         {
-            List<Player> userList = _connections.GetList();
-            foreach (var item in userList)
+            Player foundPlayer = _connections.GetPlayer(userGuid);
+            if (!foundPlayer.HasVoted && answer == "d")
             {
-                if (item.ID == userGuid && answer == "d")
-                {
-                    item.Score += 100;
-                }
+                foundPlayer.Score += 100;
             }
+            foundPlayer.HasVoted = true;
+        }
+
+        public async Task SubmitAnswers()
+        {
+            List<Player> userList = _connections.GetList();
+            foreach (Player player in userList)
+            {
+                player.HasVoted = false;
+            }
+            await Clients.All.SendAsync("ReceiveUser", userList);
         }
 
     }

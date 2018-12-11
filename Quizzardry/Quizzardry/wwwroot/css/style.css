@@ -57,3 +57,6 @@ main {
   main {
     margin: 0;
     width: 100%; } }
+
+.removeMe {
+  display: none; }
