@@ -22,6 +22,10 @@ namespace Quizzardry.Pages.Game
         public IActionResult OnGet()
         {
             var userJSON = HttpContext.Session.GetString("user");
+            if (userJSON == null)
+            {
+                return Redirect("/");
+            }
             Player = JsonConvert.DeserializeObject<Player>(userJSON);
             return Page();
         }

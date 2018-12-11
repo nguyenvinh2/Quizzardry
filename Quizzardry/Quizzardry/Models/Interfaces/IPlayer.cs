@@ -8,7 +8,7 @@ namespace Quizzardry.Models.Interfaces
     interface IPlayer
     {
         // Get player data
-        Task<Player> GetPlayer(int id);
+        Task<Player> GetPlayer(string id);
 
         // Get all Player's By Room
         Task<IEnumerable<Player>> GetPlayersByRoom(string roomId);
