@@ -1,42 +1,43 @@
 ﻿@page
 @model Quizzardry.Pages.Game.IndexModel
 @{
-  ViewData["Title"] = "Index";
-  string aspnet = "@aspnet";
+    ViewData["Title"] = "Index";
+    string aspnet = "@aspnet";
 }
 <h2>Index</h2>
 
 <div class="container">
-  <div class="row">&nbsp;</div>
-  <div class="row">
-    <div class="col-6">&nbsp;</div>
-    <div class="col-6">
-      <input type="hidden" id="userInput" value="@Model.Player.Name" />
-      <br />
-      Message...<input type="text" id="messageInput" />
-      <input type="button" id="sendButton" value="SendMessage" />
+    <div class="row">&nbsp;</div>
+    <div class="row">
+        <div class="col-6">&nbsp;</div>
+        <div class="col-6">
+            <input type="hidden" id="userInput" value="@Model.Player.Name" />
+            <input type="hidden" id="userInputGuid" value="@Model.Player.ID" />
+            <br />
+            Message...<input type="text" id="messageInput" />
+            <input type="button" id="sendButton" value="SendMessage" />
+        </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <hr />
+    <div class="row">
+        <div class="col-12">
+            <hr />
+        </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-6">
-      <ul id="userList"></ul>
+    <div class="row">
+        <div class="col-6">
+            <ul id="userList"></ul>
+        </div>
+        <div class="col-6">&nbsp;</div>
+        <div class="col-6">
+            <ul id="messagesList"></ul>
+        </div>
     </div>
-    <div class="col-6">&nbsp;</div>
-    <div class="col-6">
-      <ul id="messagesList"></ul>
-    </div>
-  </div>
 </div>
 
 <div>
-  <label>A.</label>
-  <input name="answer-options" type="radio" value="a" />
-  <input type="button" id="voteButton" value="SendVote" />
+    <label>A.</label>
+    <input name="answer-options" type="radio" value="a" />
+    <input type="button" id="voteButton" value="SendVote" />
 </div>
 <script src="~/lib/@aspnet/signalr/dist/browser/signalr.js"></script>
 <script src="~/js/chat.js"></script>
