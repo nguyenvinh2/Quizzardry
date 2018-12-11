@@ -1,36 +1,55 @@
 ﻿@page
 @model Quizzardry.Pages.Game.IndexModel
 @{
-  ViewData["Title"] = "Index";
-  string aspnet = "@aspnet";
+    ViewData["Title"] = "Index";
+    string aspnet = "@aspnet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="~/lib/@aspnet/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>
+
 <h2>Index</h2>
 
 <div class="container">
-  <div class="row">&nbsp;</div>
-  <div class="row">
-    <div class="col-6">&nbsp;</div>
-    <div class="col-6">
-      <input type="hidden" id="userInput" value="@Model.Player.Name" />
-      <br />
-      Message...<input type="text" id="messageInput" />
-      <input type="button" id="sendButton" value="SendMessage" />
+    <div class="row">&nbsp;</div>
+    <div class="row">
+        <div class="col-6">&nbsp;</div>
+        <div class="col-6">
+            <input type="hidden" id="userInput" value="@Model.Player.Name" />
+            <input type="hidden" id="userInputGuid" value="@Model.Player.ID" />
+            <br />
+            Message...<input type="text" id="messageInput" />
+            <input type="button" id="sendButton" value="SendMessage" />
+        </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <hr />
+    <div class="row">
+        <div class="col-12">
+            <hr />
+        </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-6">
-      <ul id="userList"></ul>
+    <div class="row">
+        <div class="col-6">
+            <ul id="userList"></ul>
+        </div>
+        <div class="col-6">&nbsp;</div>
+        <div class="col-6">
+            <ul id="messagesList"></ul>
+        </div>
     </div>
-    <div class="col-6">&nbsp;</div>
-    <div class="col-6">
-      <ul id="messagesList"></ul>
-    </div>
-  </div>
 </div>
-<script src="~/lib/@aspnet/signalr/dist/browser/signalr.js"></script>
-<script src="~/js/chat.js"></script>
+
+<div>
+    <label>A. Yes</label>
+    <input name="answer-options" type="radio" value="a" />
+    <label>B. some answer</label>
+    <input name="answer-options" type="radio" value="b" />
+    <label>C. I don't know</label>
+    <input name="answer-options" type="radio" value="c" />
+    <label>D. Jimmy sucks!</label>
+    <input name="answer-options" type="radio" value="d" />
+    <input type="hidden" id="voteCount" value="0" />
+    <input type="button" id="voteButton" value="SendVote" />
+    <input type="button" id="resultButton" class="removeMe" value="Submit" />
+
+</div>
