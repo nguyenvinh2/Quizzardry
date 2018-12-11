@@ -17,7 +17,8 @@ connection.on("ReceiveUser", function (userList) {
     users.removeChild(users.firstChild);
   }
   for (let i = 0; i < userList.length; i++) {
-    var encodedMsg = userList[i] + " has joined the game";
+    var encodedMsg = userList[i].name + " has joined the game." + "Score is " + userList[i].score;
+    console.log(userList[i]);
     var li = document.createElement("li");
     li.textContent = encodedMsg;
     document.getElementById("userList").appendChild(li);

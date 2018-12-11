@@ -25,14 +25,29 @@ namespace Quizzardry.Hubs
         public async Task SendUser(string user)
         {
             await OnConnected(user);
-            var userList = _connections.GetConnections();
+            List<Player> userList = _connections.GetConnections();
             await Clients.All.SendAsync("ReceiveUser", userList);
         }
 
         public Task OnConnected(string user)
         {
-            _connections.Add(Context.ConnectionId, user);
-
+            bool exists = false;
+            List<Player> userList = _connections.GetConnections();
+            foreach (var item in userList)
+            {
+                if (item.Name == user)
+                {
+                    exists = true;
+                }
+            }
+            if (!exists)
+            {
+                Player NewPlayer = new Player();
+                NewPlayer.ID = Context.ConnectionId;
+                NewPlayer.Name = user;
+                NewPlayer.Score = 0;
+                _connections.Add(Context.ConnectionId, NewPlayer);
+            }
             return base.OnConnectedAsync();
         }
 
