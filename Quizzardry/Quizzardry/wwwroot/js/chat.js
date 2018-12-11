@@ -45,8 +45,8 @@ document.getElementById("sendButton").addEventListener("click", function (event)
 
 $("#voteButton").click(function () {
   var $answer = $('input[name=answer-options]:checked').val();
-  var user = document.getElementById("userInput").value;
-  connection.invoke("AddPoints", user, $answer).catch(function (err) {
+  var userGuid = document.getElementById("userInputGuid").value;
+  connection.invoke("AddPoints", userGuid, $answer).catch(function (err) {
     return console.error(err.toString());
   });
   event.preventDefault();
@@ -55,7 +55,8 @@ $("#voteButton").click(function () {
 
 $("#resultButton").click(function () {
   var user = document.getElementById("userInput").value;
-  connection.invoke("SendUser", user).catch(function (err) {
+  var userGuid = document.getElementById("userInputGuid").value;
+  connection.invoke("SendUser", user, userGuid).catch(function (err) {
     return console.error(err.toString());
   });
   event.preventDefault();

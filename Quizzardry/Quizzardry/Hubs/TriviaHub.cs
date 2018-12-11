@@ -45,12 +45,12 @@ namespace Quizzardry.Hubs
             return base.OnConnectedAsync();
         }
 
-        public async void AddPoints(string user, string answer)
+        public void AddPoints(Guid userGuid, string answer)
         {
-            List<Player> userList = _connections.GetConnections();
+            List<Player> userList = _connections.GetList();
             foreach (var item in userList)
             {
-                if (item.Name == user && answer == "d")
+                if (item.ID == userGuid && answer == "d")
                 {
                     item.Score += 100;
                 }
