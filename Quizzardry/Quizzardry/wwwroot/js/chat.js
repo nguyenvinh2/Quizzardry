@@ -44,15 +44,20 @@ document.getElementById("sendButton").addEventListener("click", function (event)
 });
 
 $("#voteButton").click(function () {
-    connection.invoke("SendVote").catch(function (err) {
-        return console.error(err.toString());
-    });
-    event.preventDefault();
+  var $answer = $('input[name=answer-options]:checked').val();
+  var userGuid = document.getElementById("userInputGuid").value;
+  connection.invoke("AddPoints", userGuid, $answer).catch(function (err) {
+    return console.error(err.toString());
+  });
+  event.preventDefault();
 });
 
 
-//if (window.addEventListener) {
-//  window.addEventListener('load', WindowLoad, false);
-//} else if (window.attachEvent) { 
-//  window.attachEvent('onload', WindowLoad);
-//}
+$("#resultButton").click(function () {
+  var user = document.getElementById("userInput").value;
+  var userGuid = document.getElementById("userInputGuid").value;
+  connection.invoke("SendUser", user, userGuid).catch(function (err) {
+    return console.error(err.toString());
+  });
+  event.preventDefault();
+});
