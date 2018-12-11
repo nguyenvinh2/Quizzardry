@@ -20,6 +20,7 @@ namespace Quizzardry.Pages
         [HttpPost]
         public void OnPostUpdate()
         {
+            Player.ID = Guid.NewGuid();
             HttpContext.Session.SetString("user", JsonConvert.SerializeObject(Player));
             Response.Redirect("Game");
         }
