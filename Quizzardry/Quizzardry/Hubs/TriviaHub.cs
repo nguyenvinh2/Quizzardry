@@ -41,6 +41,7 @@ namespace Quizzardry.Hubs
                 NewPlayer.Name = user;
                 NewPlayer.Score = 0;
                 NewPlayer.HasVoted = false;
+                NewPlayer.IsAdmin = _connections.Count == 0 ? true : false;
                 _connections.Add(NewPlayer.ID, NewPlayer);
             }
             return base.OnConnectedAsync();

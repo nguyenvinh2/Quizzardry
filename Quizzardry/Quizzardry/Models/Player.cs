@@ -13,5 +13,6 @@ namespace Quizzardry.Models
         public int Score { get; set; }
         public bool Toad { get; set; }
         public bool HasVoted { get; set; }
+        public bool IsAdmin { get; set; }
     }
 }
