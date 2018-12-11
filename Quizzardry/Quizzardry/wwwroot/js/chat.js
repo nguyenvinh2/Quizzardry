@@ -12,7 +12,7 @@ connection.start().then(function(){
 });
 
 connection.on("ReceiveUser", function (user) {
-  var encodedMsg = user + "has joined the game";
+  var encodedMsg = user + " has joined the game";
   var li = document.createElement("li");
   li.textContent = encodedMsg;
   document.getElementById("userList").appendChild(li);
