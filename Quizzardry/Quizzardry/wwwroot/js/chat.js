@@ -2,16 +2,28 @@
 
 var connection = new signalR.HubConnectionBuilder().withUrl("/triviaHub").build();
 
+connection.start().then(function(){
+  var user = document.getElementById("userInput").value;
+  connection.invoke("SendUser", user).catch(function (err) {
+    return console.error(err.toString());
+  });
+}).catch(function (err) {
+  return console.error(err.toString());
+});
+
+connection.on("ReceiveUser", function (user) {
+  var encodedMsg = user + " has joined the game";
+  var li = document.createElement("li");
+  li.textContent = encodedMsg;
+  document.getElementById("userList").appendChild(li);
+});
+
 connection.on("ReceiveMessage", function (user, message) {
   var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   var encodedMsg = user + " says " + msg;
   var li = document.createElement("li");
   li.textContent = encodedMsg;
   document.getElementById("messagesList").appendChild(li);
-});
-
-connection.start().catch(function (err) {
-  return console.error(err.toString());
 });
 
 document.getElementById("sendButton").addEventListener("click", function (event) {
@@ -22,3 +34,10 @@ document.getElementById("sendButton").addEventListener("click", function (event)
   });
   event.preventDefault();
 });
+
+
+//if (window.addEventListener) {
+//  window.addEventListener('load', WindowLoad, false);
+//} else if (window.attachEvent) { 
+//  window.attachEvent('onload', WindowLoad);
+//}

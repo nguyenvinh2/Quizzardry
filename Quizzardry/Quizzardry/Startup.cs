@@ -13,6 +13,7 @@ using Quizzardry.Data;
 using Quizzardry.Models.Interfaces;
 using Quizzardry.Models.Services;
 using Quizzardry.Hubs;
+using Microsoft.AspNetCore.SignalR;
 
 namespace Quizzardry
 {
@@ -65,6 +66,7 @@ namespace Quizzardry
                 app.UseDeveloperExceptionPage();
             }
             app.UseSession();
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
             //app.UseMvc(routes =>
             //{
@@ -78,7 +80,12 @@ namespace Quizzardry
                 routes.MapHub<TriviaHub>("/triviaHub");
             });
 
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                name: "default",
+                template: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
     }
 }

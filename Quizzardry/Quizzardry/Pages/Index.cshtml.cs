@@ -13,18 +13,15 @@ namespace Quizzardry.Pages
     public class IndexModel : PageModel
     {
         [BindProperty]
-        public Users Username { get; set; }
+        public Player Player { get; set; }
         public void OnGet()
         {
         }
-        public async Task<IActionResult> OnPostUpdate()
+        [HttpPost]
+        public void OnPostUpdate()
         {
-            Users profile = new Users();
-            profile.username = Username.username;
-            HttpContext.Session.SetString("user", JsonConvert.SerializeObject(profile));
-
-            string name = HttpContext.Session.GetString("user");
-            return RedirectToAction("Game");
+            HttpContext.Session.SetString("user", JsonConvert.SerializeObject(Player));
+            Response.Redirect("Game");
         }
     }
 }
