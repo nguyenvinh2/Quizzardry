@@ -34,9 +34,17 @@
 </div>
 
 <div>
-  <label>A.</label>
+  <label>A. Yes</label>
   <input name="answer-options" type="radio" value="a" />
+  <label>B. some answer</label>
+  <input name="answer-options" type="radio" value="b" />
+  <label>C. I don't know</label>
+  <input name="answer-options" type="radio" value="c" />
+  <label>D. Jimmy sucks!</label>
+  <input name="answer-options" type="radio" value="d" />
   <input type="button" id="voteButton" value="SendVote" />
+  <input type="button" id="resultButton" value="Submit" />
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="~/lib/@aspnet/signalr/dist/browser/signalr.js"></script>
 <script src="~/js/chat.js"></script>

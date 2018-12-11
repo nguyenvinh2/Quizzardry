@@ -43,15 +43,19 @@ document.getElementById("sendButton").addEventListener("click", function (event)
 });
 
 $("#voteButton").click(function () {
-  connection.invoke("SendVote").catch(function (err) {
+  var $answer = $('input[name=answer-options]:checked').val();
+  var user = document.getElementById("userInput").value;
+  connection.invoke("AddPoints", user, $answer).catch(function (err) {
     return console.error(err.toString());
   });
   event.preventDefault();
 });
 
 
-//if (window.addEventListener) {
-//  window.addEventListener('load', WindowLoad, false);
-//} else if (window.attachEvent) { 
-//  window.attachEvent('onload', WindowLoad);
-//}
+$("#resultButton").click(function () {
+  var user = document.getElementById("userInput").value;
+  connection.invoke("SendUser", user).catch(function (err) {
+    return console.error(err.toString());
+  });
+  event.preventDefault();
+});
