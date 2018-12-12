@@ -1,7 +1,7 @@
 ﻿"use strict";
 
 var connection = new signalR.HubConnectionBuilder().withUrl("/triviaHub").build();
-var round = 0;
+var round = 1;
 
 $(document).ready(function () {
     $(".questions").hide();
@@ -30,10 +30,21 @@ $(document).ready(function () {
             li.textContent = encodedMsg;
             document.getElementById("userList").appendChild(li);
         }
-        round++;
         var currentQuestionId = "question" + round;
         $(".questions").hide();
         $(`#${currentQuestionId}`).show();
+
+        if (round > 3) {
+            var highScore = 0;
+            var userName = "";
+            for (let i = 0; i < userList.length; i++) {
+                if (userList[i].score > highScore) {
+                    highScore = userList[i].score;
+                    userName = userList[i].name;
+                }
+            };
+            $("#winner").append(`<h2>Congrats ${userName}! The winning score is ${highScore}!</h2>`);
+        }
     });
 
     connection.on("ReceiveMessage", function (user, message) {
@@ -64,6 +75,7 @@ $(document).ready(function () {
 
 
     $(".submitButton").click(function () {
+      round++;
       var user = document.getElementById("userInput").value;
       var userGuid = document.getElementById("userInputGuid").value;
       connection.invoke("SubmitAnswers").catch(function (err) {
