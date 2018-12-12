@@ -34,7 +34,7 @@ $(document).ready(function () {
         $(".questions").hide();
         $(`#${currentQuestionId}`).show();
 
-        if (round > 3) {
+        if (round > 5) {
             var highScore = 0;
             var userName = "";
             for (let i = 0; i < userList.length; i++) {
