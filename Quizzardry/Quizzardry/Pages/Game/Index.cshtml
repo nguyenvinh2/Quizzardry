@@ -39,8 +39,10 @@
 <div id="winner">
 
 </div>
+<div id="questions">
 
-@foreach(var question in Model.Questions)
+</div>
+@*@foreach(var question in Model.Questions)
 {
     <div id="@("question" + count)" class="questions">
         <h4>@question.Question</h4>
@@ -57,7 +59,7 @@
         <input type="button" class="submitButton" value="Submit" />
     </div>
     count++;
-}
+}*@
 
 @*<div id="question1" class="questions">
     <h4>@Model.Questions[0].Question</h4>

@@ -20,27 +20,9 @@ namespace Quizzardry.Pages.Game
     public class IndexModel : PageModel
     {
         public Player Player { get; set; }
-        public List<Questions> Questions = new List<Questions>();
-        private readonly QuestionsDbContext _context;
-
-        public IndexModel(QuestionsDbContext context)
-        {
-            _context = context;
-        }
 
         public IActionResult OnGet()
         {
-            List<Questions> AllQuestions = _context.Questions.ToList();
-            while(Questions.Count < 5)
-            {
-                Random random = new Random();
-                int index = random.Next(0, AllQuestions.Count);
-                if (!Questions.Contains(AllQuestions[index]))
-                {
-                    Questions.Add(AllQuestions[index]);
-                }
-            }
-
             var userJSON = HttpContext.Session.GetString("user");
             if (userJSON == null)
             {
