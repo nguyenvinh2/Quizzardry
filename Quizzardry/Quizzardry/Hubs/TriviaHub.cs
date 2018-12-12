@@ -9,13 +9,20 @@ using Quizzardry.Models;
 using Newtonsoft.Json;
 using Quizzardry.Models.Interfaces;
 using Quizzardry.Hubs;
+using Quizzardry.Data;
 
 namespace Quizzardry.Hubs
 {
     public class TriviaHub : Hub
     {
-        private readonly static StorageHub<Guid> _connections =
-    new StorageHub<Guid>();
+        private readonly static StorageHub<Guid> _connections = new StorageHub<Guid>();
+        private readonly QuestionsDbContext _context;
+        public static List<Questions> Questions = new List<Questions>();
+
+        public TriviaHub(QuestionsDbContext context)
+        {
+            _context = context;
+        }
 
         public async Task SendMessage(string user, string message)
         {
@@ -26,7 +33,7 @@ namespace Quizzardry.Hubs
         {
             await OnConnected(user, id);
             List<Player> userList = _connections.GetList();
-            await Clients.All.SendAsync("ReceiveUser", userList);
+            await Clients.All.SendAsync("ReceiveUser", userList, Questions);
         }
 
         public Task OnConnected(string user, Guid id)
@@ -64,7 +71,26 @@ namespace Quizzardry.Hubs
             {
                 player.HasVoted = false;
             }
-            await Clients.All.SendAsync("ReceiveUser", userList);
+            await Clients.All.SendAsync("ReceiveUser", userList, Questions);
+        }
+
+        public async Task CreateQuestions(string user, Guid id)
+        {
+            await OnConnected(user, id);
+            List<Player> userList = _connections.GetList();
+            
+            List<Questions> AllQuestions = _context.Questions.ToList();
+            while (Questions.Count < 5)
+            {
+                Random random = new Random();
+                int index = random.Next(0, AllQuestions.Count);
+                if (!Questions.Contains(AllQuestions[index]))
+                {
+                    Questions.Add(AllQuestions[index]);
+                }
+            }
+            await Clients.All.SendAsync("ReceiveUser", userList, Questions);
+
         }
 
     }

@@ -2,6 +2,7 @@
 
 var connection = new signalR.HubConnectionBuilder().withUrl("/triviaHub").build();
 var round = 1;
+var userCount = 0;
 
 $(document).ready(function () {
     $(".questions").hide();
@@ -11,14 +12,20 @@ $(document).ready(function () {
     connection.start().then(function () {
         var user = document.getElementById("userInput").value;
         var userGuid = document.getElementById("userInputGuid").value;
-        connection.invoke("SendUser", user, userGuid).catch(function (err) {
-            return console.error(err.toString());
-        });
+        if (userCount == 0) {
+            connection.invoke("CreateQuestions", user, userGuid);
+        }
+        else {
+            connection.invoke("SendUser", user, userGuid).catch(function (err) {
+                return console.error(err.toString());
+            });
+        }
+        userCount++;
     }).catch(function (err) {
         return console.error(err.toString());
     });
 
-    connection.on("ReceiveUser", function (userList) {
+    connection.on("ReceiveUser", function (userList, questions) {
         var users = document.getElementById("userList");
         while (users.firstChild) {
             users.removeChild(users.firstChild);
@@ -30,6 +37,25 @@ $(document).ready(function () {
             li.textContent = encodedMsg;
             document.getElementById("userList").appendChild(li);
         }
+        $("#questions").empty();
+        for (let i = 0; i < questions.length; i++) {
+            $("#questions").append(`<div id="question${i + 1}" class="questions">
+                                        <h4>${questions[i].question}</h4>
+                                        <label>${questions[i].answer1}</label>
+                                        <input name="answer-options" type="radio" value="a" />
+                                        <label>${questions[i].answer2}</label>
+                                        <input name="answer-options" type="radio" value="b" />
+                                        <label>${questions[i].answer3}</label>
+                                        <input name="answer-options" type="radio" value="c" />
+                                        <label>${questions[i].correctAnswer}</label>
+                                        <input name="answer-options" type="radio" value="d" />
+                                        <input type="hidden" class="voteCount" value="0" />
+                                        <input type="button" class="voteButton" value="SendVote" />
+                                        <input type="button" class="submitButton" value="Submit" />
+                                    </div>`);
+        }
+        setEventListeners();
+
         var currentQuestionId = "question" + round;
         $(".questions").hide();
         $(`#${currentQuestionId}`).show();
@@ -64,24 +90,26 @@ $(document).ready(function () {
         event.preventDefault();
     });
 
-    $(".voteButton").click(function () {
-      var $answer = $('input[name=answer-options]:checked').val();
-      var userGuid = document.getElementById("userInputGuid").value;
-      connection.invoke("AddPoints", userGuid, $answer).catch(function (err) {
-        return console.error(err.toString());
-      });
-      event.preventDefault();
-    });
+    function setEventListeners() {
+        $(".voteButton").click(function () {
+          var $answer = $('input[name=answer-options]:checked').val();
+          var userGuid = document.getElementById("userInputGuid").value;
+          connection.invoke("AddPoints", userGuid, $answer).catch(function (err) {
+            return console.error(err.toString());
+          });
+          event.preventDefault();
+        });
 
 
-    $(".submitButton").click(function () {
-      round++;
-      var user = document.getElementById("userInput").value;
-      var userGuid = document.getElementById("userInputGuid").value;
-      connection.invoke("SubmitAnswers").catch(function (err) {
-        return console.error(err.toString());
-      });
-        event.preventDefault();
-    });
+        $(".submitButton").click(function () {
+          round++;
+          var user = document.getElementById("userInput").value;
+          var userGuid = document.getElementById("userInputGuid").value;
+          connection.invoke("SubmitAnswers").catch(function (err) {
+            return console.error(err.toString());
+          });
+            event.preventDefault();
+        });
+    }
 
 });
