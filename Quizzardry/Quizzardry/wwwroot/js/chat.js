@@ -1,7 +1,6 @@
 ﻿"use strict";
 
 var connection = new signalR.HubConnectionBuilder().withUrl("/triviaHub").build();
-var round = 1;
 var userCount = 0;
 
 $(document).ready(function () {
@@ -25,7 +24,7 @@ $(document).ready(function () {
         return console.error(err.toString());
     });
 
-    connection.on("ReceiveUser", function (userList, questions) {
+    connection.on("ReceiveUser", function (userList, questions, round) {
         var users = document.getElementById("userList");
         while (users.firstChild) {
             users.removeChild(users.firstChild);
@@ -102,9 +101,6 @@ $(document).ready(function () {
 
 
         $(".submitButton").click(function () {
-          round++;
-          var user = document.getElementById("userInput").value;
-          var userGuid = document.getElementById("userInputGuid").value;
           connection.invoke("SubmitAnswers").catch(function (err) {
             return console.error(err.toString());
           });

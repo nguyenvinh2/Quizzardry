@@ -18,6 +18,7 @@ namespace Quizzardry.Hubs
         private readonly static StorageHub<Guid> _connections = new StorageHub<Guid>();
         private readonly QuestionsDbContext _context;
         public static List<Questions> Questions = new List<Questions>();
+        public static int Round = 1;
 
         public TriviaHub(QuestionsDbContext context)
         {
@@ -33,7 +34,7 @@ namespace Quizzardry.Hubs
         {
             await OnConnected(user, id);
             List<Player> userList = _connections.GetList();
-            await Clients.All.SendAsync("ReceiveUser", userList, Questions);
+            await Clients.All.SendAsync("ReceiveUser", userList, Questions, Round);
         }
 
         public Task OnConnected(string user, Guid id)
@@ -71,7 +72,8 @@ namespace Quizzardry.Hubs
             {
                 player.HasVoted = false;
             }
-            await Clients.All.SendAsync("ReceiveUser", userList, Questions);
+            Round++;
+            await Clients.All.SendAsync("ReceiveUser", userList, Questions, Round);
         }
 
         public async Task CreateQuestions(string user, Guid id)
@@ -89,7 +91,7 @@ namespace Quizzardry.Hubs
                     Questions.Add(AllQuestions[index]);
                 }
             }
-            await Clients.All.SendAsync("ReceiveUser", userList, Questions);
+            await Clients.All.SendAsync("ReceiveUser", userList, Questions, Round);
 
         }
 
