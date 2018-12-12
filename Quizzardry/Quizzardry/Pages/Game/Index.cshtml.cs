@@ -31,7 +31,7 @@ namespace Quizzardry.Pages.Game
         public IActionResult OnGet()
         {
             List<Questions> AllQuestions = _context.Questions.ToList();
-            while(Questions.Count < 2)
+            while(Questions.Count < 3)
             {
                 Random random = new Random();
                 int index = random.Next(0, AllQuestions.Count);
