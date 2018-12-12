@@ -4,6 +4,7 @@
     ViewData["Title"] = "Index";
     string aspnet = "@aspnet";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    int count = 1;
 }
 <h2>Index</h2>
 
@@ -39,8 +40,27 @@
 
 </div>
 
-<div id="question1" class="questions">
-    <h4>Question 1</h4>
+@foreach(var question in Model.Questions)
+{
+    <div id="@("question" + count)" class="questions">
+        <h4>@question.Question</h4>
+        <label>@question.Answer1</label>
+        <input name="answer-options" type="radio" value="a" />
+        <label>@question.Answer2</label>
+        <input name="answer-options" type="radio" value="b" />
+        <label>@question.Answer3</label>
+        <input name="answer-options" type="radio" value="c" />
+        <label>@question.CorrectAnswer</label>
+        <input name="answer-options" type="radio" value="d" />
+        <input type="hidden" class="voteCount" value="0" />
+        <input type="button" class="voteButton" value="SendVote" />
+        <input type="button" class="submitButton" value="Submit" />
+    </div>
+    count++;
+}
+
+@*<div id="question1" class="questions">
+    <h4>@Model.Questions[0].Question</h4>
     <label>A. Yes</label>
     <input name="answer-options" type="radio" value="a" />
     <label>B. some answer</label>
@@ -82,7 +102,7 @@
     <input type="hidden" class="voteCount" value="0" />
     <input type="button" class="voteButton" value="SendVote" />
     <input type="button" class="submitButton" value="Submit" />
-</div>
+</div>*@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="~/lib/@aspnet/signalr/dist/browser/signalr.js"></script>
