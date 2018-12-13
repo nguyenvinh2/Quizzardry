@@ -34,8 +34,11 @@ namespace Quizzardry.Hubs
         {
             await OnConnected(user);
             List<Player> userList = _connections.GetList();
+            await Clients.All.SendAsync("UserJoin", userList);
             await Clients.All.SendAsync("ReceiveUser", userList, Questions, Round);
         }
+
+
         public override async Task OnDisconnectedAsync(Exception exception)
         {
             _connections.Remove(Context.ConnectionId);
@@ -80,6 +83,8 @@ namespace Quizzardry.Hubs
             {
                 player.HasVoted = false;
             }
+            
+            await Clients.All.SendAsync("Vote", Round);
             Round++;
             await Clients.All.SendAsync("ReceiveUser", userList, Questions, Round);
             await MakeAdmin();
@@ -100,9 +105,9 @@ namespace Quizzardry.Hubs
                     Questions.Add(AllQuestions[index]);
                 }
             }
+            await Clients.All.SendAsync("UserJoin", userList);
             await Clients.All.SendAsync("ReceiveUser", userList, Questions, Round);
             await MakeAdmin();
-
         }
 
         public async Task Reset()

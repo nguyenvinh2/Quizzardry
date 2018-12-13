@@ -30,13 +30,17 @@ $(document).ready(function () {
     hideAll(round, userList);
   });
 
+    connection.on("UserJoin", (userList) => {
+        $(`#user-number`).text(`Users Join: ${userList.length}. Admin ${userList[0].name}`);
+        var encodedMsg = userList[userList.length - 1].name + " has joined the game.";
+        var li = document.createElement("li");
+        li.textContent = encodedMsg;
+        $("#messagesList").prepend(li);
+
+    })
 
   connection.on("ReceiveUser", function (userList, questions, round) {
-    $(`#user-number`).text(`Users Join: ${userList.length}. Admin ${userList[0].name}`);
-    var encodedMsg = userList[userList.length - 1].name + " has joined the game.";
-    var li = document.createElement("li");
-    li.textContent = encodedMsg;
-    $("#messagesList").append(li);
+    
     $("#questions").empty();
     for (let i = 0; i < questions.length; i++) {
       $("#questions").append(`<div id="question${i + 1}" class="questions text-center">
@@ -65,17 +69,13 @@ $(document).ready(function () {
                                                 <input name="answer-options" type="radio" value="d" />
                                             </label>
                                         </div>
-                                        <div class="mt-3">
-                                            <input type="hidden" class="voteCount" value="0" />
-                                            <input class="mb-2" type="button" class="voteButton" value="Send Vote" />
-                                        </div>
                                     </div>`);
     }
     hideAll(round, userList);
   });
 
   function hideAll(round, userList) {
-    setEventListeners(round);
+    setEventListeners();
 
     var currentQuestionId = "question" + round;
     $(".questions").hide();
@@ -86,7 +86,7 @@ $(document).ready(function () {
       userList.sort((a, b) => b.score - a.score);
       $(`#winnerList`).empty();
         for (let i = 0; i < userList.length; i++) {
-            $("#winnerList").append(`<li>${userList[i].name}:${userList[i].score} points</li >`)
+            $("#winnerList").append(`<li>${userList[i].name}: ${userList[i].score} points</li>`)
         }
       $("#winner").removeClass("hidden");
       $("#resetButton").on("click", () => {
@@ -100,7 +100,7 @@ $(document).ready(function () {
     var encodedMsg = user + " says " + msg;
     var li = document.createElement("li");
     li.textContent = encodedMsg;
-    document.getElementById("messagesList").appendChild(li);
+    $("#messagesList").prepend(li);
   });
 
   document.getElementById("sendButton").addEventListener("click", function (event) {
@@ -113,16 +113,14 @@ $(document).ready(function () {
     event.preventDefault();
   });
 
-  function setEventListeners(round) {
-    $(".voteButton").click(function () {
-      var $answer = $('input[name=answer-options]:checked').val();
-      connection.invoke("AddPoints", $answer, round).catch(function (err) {
-        return console.error(err.toString());
-      });
-      event.preventDefault();
-    });
+    connection.on("Vote", (round) => {
+        var $answer = $('input[name=answer-options]:checked').val();
+        connection.invoke("AddPoints", $answer, round).catch(function (err) {
+            return console.error(err.toString());
+        });
+    })
 
-
+  function setEventListeners() {
     $(".submitButton").click(function () {
       connection.invoke("SubmitAnswers").catch(function (err) {
         return console.error(err.toString());
