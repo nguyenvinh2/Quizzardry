@@ -56,59 +56,34 @@ $(document).ready(function () {
                                         <input name="answer-options" type="radio" value="b" />
                                         <label>${questions[i].answer3}</label>
                                         <input name="answer-options" type="radio" value="c" />
-                                        <label>${questions[i].correctAnswer}</label>
+                                        <label>${questions[i].answer4}</label>
                                         <input name="answer-options" type="radio" value="d" />
                                         <input type="hidden" class="voteCount" value="0" />
                                         <input type="button" class="voteButton" value="SendVote" />
                                     </div>`);
     }
     hideAll(round, userList);
-    //setEventListeners();
-
-    //var currentQuestionId = "question" + round;
-    //$(".questions").hide();
-    //$(`#${currentQuestionId}`).show();
-
-    //if (round > 5) {
-    //    var highScore = 0;
-    //    var userName = "";
-    //    for (let i = 0; i < userList.length; i++) {
-    //        if (userList[i].score > highScore) {
-    //            highScore = userList[i].score;
-    //            userName = userList[i].name;
-    //        }
-    //    };
-    //    $("#winner").prepend(`<h2>Congrats ${userName}! The winning score is ${highScore}!</h2>`);
-    //    $("#winner").removeClass("hidden");
-    //    $("#resetButton").on("click", () => {
-    //        connection.invoke("Reset");
-    //    });
-    //}
   });
 
   function hideAll(round, userList) {
-    setEventListeners();
+    setEventListeners(round);
 
     var currentQuestionId = "question" + round;
     $(".questions").hide();
     $(`#${currentQuestionId}`).show();
 
     if (round > 5) {
-      var highScore = 0;
-      var userName = "";
-      for (let i = 0; i < userList.length; i++) {
-        if (userList[i].score > highScore) {
-          highScore = userList[i].score;
-          userName = userList[i].name;
+
+        userList.sort((a, b) => b.score - a.score);
+        for (let i = 0; i < userList.length; i++) {
+            $("#winnerList").append(`<li>${userList[i].name}:${userList[i].score} points</li >`)
         }
-      }
-      $("#winner").prepend(`<h2>Congrats ${userName}! The winning score is ${highScore}!</h2>`);
       $("#winner").removeClass("hidden");
       $("#resetButton").on("click", () => {
         connection.invoke("Reset");
       });
     }
-  }
+    }
 
   connection.on("ReceiveMessage", function (user, message) {
     var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -127,11 +102,11 @@ $(document).ready(function () {
     event.preventDefault();
   });
 
-  function setEventListeners() {
+  function setEventListeners(round) {
     $(".voteButton").click(function () {
       var $answer = $('input[name=answer-options]:checked').val();
       //var userGuid = document.getElementById("userInputGuid").value;
-      connection.invoke("AddPoints", $answer).catch(function (err) {
+      connection.invoke("AddPoints", $answer, round).catch(function (err) {
         return console.error(err.toString());
       });
       event.preventDefault();
