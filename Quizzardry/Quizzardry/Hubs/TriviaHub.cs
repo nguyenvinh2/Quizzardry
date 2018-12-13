@@ -15,7 +15,7 @@ namespace Quizzardry.Hubs
 {
     public class TriviaHub : Hub
     {
-        private readonly static StorageHub<Guid> _connections = new StorageHub<Guid>();
+        private static StorageHub<Guid> _connections = new StorageHub<Guid>();
         private readonly QuestionsDbContext _context;
         public static List<Questions> Questions = new List<Questions>();
         public static int Round = 1;
@@ -95,5 +95,11 @@ namespace Quizzardry.Hubs
 
         }
 
+        public async Task Reset()
+        {
+            _connections = new StorageHub<Guid>();
+            Round = 1;
+            await Clients.All.SendAsync("BackHome");
+        }
     }
 }
