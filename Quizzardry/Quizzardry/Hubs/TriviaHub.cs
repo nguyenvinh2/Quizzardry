@@ -63,10 +63,10 @@ namespace Quizzardry.Hubs
         }
 
 
-        public void AddPoints(string answer)
+        public void AddPoints(string answer, int round)
         {
             Player foundPlayer = _connections.GetPlayer(Context.ConnectionId);
-            if (!foundPlayer.HasVoted && answer == "d")
+            if (!foundPlayer.HasVoted && answer == Questions[round-1].CorrectAnswer)
             {
                 foundPlayer.Score += 100;
             }
@@ -108,6 +108,7 @@ namespace Quizzardry.Hubs
         public async Task Reset()
         {
             _connections = new StorageHub<string>();
+            Questions = new List<Questions>();
             Round = 1;
             await Clients.All.SendAsync("BackHome");
         }

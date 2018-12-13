@@ -56,7 +56,7 @@ $(document).ready(function () {
                                         <input name="answer-options" type="radio" value="b" />
                                         <label>${questions[i].answer3}</label>
                                         <input name="answer-options" type="radio" value="c" />
-                                        <label>${questions[i].correctAnswer}</label>
+                                        <label>${questions[i].answer4}</label>
                                         <input name="answer-options" type="radio" value="d" />
                                         <input type="hidden" class="voteCount" value="0" />
                                         <input type="button" class="voteButton" value="SendVote" />
@@ -87,7 +87,7 @@ $(document).ready(function () {
   });
 
   function hideAll(round, userList) {
-    setEventListeners();
+    setEventListeners(round);
 
     var currentQuestionId = "question" + round;
     $(".questions").hide();
@@ -127,11 +127,11 @@ $(document).ready(function () {
     event.preventDefault();
   });
 
-  function setEventListeners() {
+  function setEventListeners(round) {
     $(".voteButton").click(function () {
       var $answer = $('input[name=answer-options]:checked').val();
       //var userGuid = document.getElementById("userInputGuid").value;
-      connection.invoke("AddPoints", $answer).catch(function (err) {
+      connection.invoke("AddPoints", $answer, round).catch(function (err) {
         return console.error(err.toString());
       });
       event.preventDefault();
