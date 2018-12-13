@@ -4,9 +4,15 @@
     ViewData["Title"] = "Index";
     string aspnet = "@aspnet";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    int count = 1;
 }
-<h2>Index</h2>
+<h2>Trivia Game of Gaming Trivia</h2>
+
+<div id="winner" class="hidden">
+    <button id="resetButton">Start a New Game</button>
+</div>
+<div id="questions">
+
+</div>
 
 <div class="container">
     <div class="row">&nbsp;</div>
@@ -35,76 +41,6 @@
         </div>
     </div>
 </div>
-
-<div id="winner">
-
-</div>
-<div id="questions">
-
-</div>
-@*@foreach(var question in Model.Questions)
-{
-    <div id="@("question" + count)" class="questions">
-        <h4>@question.Question</h4>
-        <label>@question.Answer1</label>
-        <input name="answer-options" type="radio" value="a" />
-        <label>@question.Answer2</label>
-        <input name="answer-options" type="radio" value="b" />
-        <label>@question.Answer3</label>
-        <input name="answer-options" type="radio" value="c" />
-        <label>@question.CorrectAnswer</label>
-        <input name="answer-options" type="radio" value="d" />
-        <input type="hidden" class="voteCount" value="0" />
-        <input type="button" class="voteButton" value="SendVote" />
-        <input type="button" class="submitButton" value="Submit" />
-    </div>
-    count++;
-}*@
-
-@*<div id="question1" class="questions">
-    <h4>@Model.Questions[0].Question</h4>
-    <label>A. Yes</label>
-    <input name="answer-options" type="radio" value="a" />
-    <label>B. some answer</label>
-    <input name="answer-options" type="radio" value="b" />
-    <label>C. I don't know</label>
-    <input name="answer-options" type="radio" value="c" />
-    <label>D. Jimmy sucks!</label>
-    <input name="answer-options" type="radio" value="d" />
-    <input type="hidden" class="voteCount" value="0" />
-    <input type="button" class="voteButton" value="SendVote" />
-    <input type="button" class="submitButton" value="Submit" />
-</div>
-
-<div id="question2" class="questions">
-    <h4>Question 2</h4>
-    <label>A. Yes</label>
-    <input name="answer-options" type="radio" value="a" />
-    <label>B. some answer</label>
-    <input name="answer-options" type="radio" value="b" />
-    <label>C. I don't know</label>
-    <input name="answer-options" type="radio" value="c" />
-    <label>D. Jimmy sucks!</label>
-    <input name="answer-options" type="radio" value="d" />
-    <input type="hidden" class="voteCount" value="0" />
-    <input type="button" class="voteButton" value="SendVote" />
-    <input type="button" class="submitButton" value="Submit" />
-</div>
-
-<div id="question3" class="questions">
-    <h4>Question 3</h4>
-    <label>A. Yes</label>
-    <input name="answer-options" type="radio" value="a" />
-    <label>B. some answer</label>
-    <input name="answer-options" type="radio" value="b" />
-    <label>C. I don't know</label>
-    <input name="answer-options" type="radio" value="c" />
-    <label>D. Jimmy sucks!</label>
-    <input name="answer-options" type="radio" value="d" />
-    <input type="hidden" class="voteCount" value="0" />
-    <input type="button" class="voteButton" value="SendVote" />
-    <input type="button" class="submitButton" value="Submit" />
-</div>*@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="~/lib/@aspnet/signalr/dist/browser/signalr.js"></script>

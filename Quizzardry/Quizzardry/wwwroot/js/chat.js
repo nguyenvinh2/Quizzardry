@@ -68,7 +68,11 @@ $(document).ready(function () {
                     userName = userList[i].name;
                 }
             };
-            $("#winner").append(`<h2>Congrats ${userName}! The winning score is ${highScore}!</h2>`);
+            $("#winner").prepend(`<h2>Congrats ${userName}! The winning score is ${highScore}!</h2>`);
+            $("#winner").removeClass("hidden");
+            $("#resetButton").on("click", () => {
+                connection.invoke("Reset");
+            });
         }
     });
 
@@ -108,4 +112,7 @@ $(document).ready(function () {
         });
     }
 
+    connection.on("BackHome", () => {
+        window.location = "/";
+    });
 });
