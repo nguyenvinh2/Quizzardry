@@ -23,6 +23,9 @@ namespace Quizzardry.Models
         public string Answer3 { get; set; }
 
         [Required]
+        public string Answer4 { get; set; }
+
+        [Required]
         public string CorrectAnswer { get; set; }
     }
 }

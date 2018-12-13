@@ -7,7 +7,7 @@ namespace Quizzardry.Models
 {
     public class Player
     {
-        public Guid ID { get; set; }
+        public string ID { get; set; }
         public string RoomID { get; set; }
         public string Name { get; set; }
         public int Score { get; set; }

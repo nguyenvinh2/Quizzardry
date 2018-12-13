@@ -24,6 +24,7 @@ namespace Quizzardry.Data
                     Answer1 = "Physicist Kenneth Bainbridge",
                     Answer2 = "Actor Kenneth Branaugh",
                     Answer3 = "Singer Kenneth \"Babyface\" Edmonds",
+                    Answer4 = "Who Cares",
                     CorrectAnswer = "Nobody!"
                 },
                 new Questions
@@ -33,6 +34,7 @@ namespace Quizzardry.Data
                     Answer1 = "Quad City DJs",
                     Answer2 = "C + C Music Factory",
                     Answer3 = "The Baha Men",
+                    Answer4 = "Who Cares",
                     CorrectAnswer = "Haddaway"
                 },
                 new Questions
@@ -42,6 +44,7 @@ namespace Quizzardry.Data
                     Answer1 = "The Ronnettes",
                     Answer2 = "The Shirellas",
                     Answer3 = "The Byrds",
+                    Answer4 = "Who Cares",
                     CorrectAnswer = "The Supremes"
                 },
                 new Questions
@@ -51,6 +54,7 @@ namespace Quizzardry.Data
                     Answer1 = "Leonard Nemoy",
                     Answer2 = "James Doohan",
                     Answer3 = "DeForest Kelley",
+                    Answer4 = "Who Cares",
                     CorrectAnswer = "George Takei"
                 },
                 new Questions
@@ -60,6 +64,7 @@ namespace Quizzardry.Data
                     Answer1 = "The Space Needle",
                     Answer2 = "The Statue of Liberty",
                     Answer3 = "The Washington Monument",
+                    Answer4 = "Who Cares",
                     CorrectAnswer = "The Gateway Arch"
                 },
                 new Questions
@@ -69,6 +74,7 @@ namespace Quizzardry.Data
                     Answer1 = "Pong",
                     Answer2 = "Space Invaders",
                     Answer3 = "Asteroids",
+                    Answer4 = "Who Cares",
                     CorrectAnswer = "Computer Space"
                 }
             );
