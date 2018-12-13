@@ -48,18 +48,36 @@ $(document).ready(function () {
     }
     $("#questions").empty();
     for (let i = 0; i < questions.length; i++) {
-      $("#questions").append(`<div id="question${i + 1}" class="questions">
+      $("#questions").append(`<div id="question${i + 1}" class="questions text-center">
                                         <h4>${questions[i].question}</h4>
-                                        <label>${questions[i].answer1}</label>
-                                        <input name="answer-options" type="radio" value="a" />
-                                        <label>${questions[i].answer2}</label>
-                                        <input name="answer-options" type="radio" value="b" />
-                                        <label>${questions[i].answer3}</label>
-                                        <input name="answer-options" type="radio" value="c" />
-                                        <label>${questions[i].correctAnswer}</label>
-                                        <input name="answer-options" type="radio" value="d" />
-                                        <input type="hidden" class="voteCount" value="0" />
-                                        <input type="button" class="voteButton" value="SendVote" />
+                                        <div class="d-block mt-3">
+                                            <label>
+                                                ${questions[i].answer1}
+                                                <input name="answer-options" type="radio" value="a" />
+                                            </label>
+                                        </div>
+                                        <div class="d-block mt-2">
+                                            <label>
+                                                ${questions[i].answer2}
+                                                <input name="answer-options" type="radio" value="b" />
+                                            </label>
+                                        </div>
+                                        <div class="d-block mt-2">
+                                            <label>
+                                                ${questions[i].answer3}
+                                                <input name="answer-options" type="radio" value="c" />
+                                            </label>
+                                        </div>
+                                        <div class="d-block mt-2">
+                                            <label>
+                                                ${questions[i].correctAnswer}
+                                                <input name="answer-options" type="radio" value="d" />
+                                            </label>
+                                        </div>
+                                        <div class="mt-3">
+                                            <input type="hidden" class="voteCount" value="0" />
+                                            <input class="mb-2" type="button" class="voteButton" value="Send Vote" />
+                                        </div>
                                     </div>`);
     }
     hideAll(round, userList);
