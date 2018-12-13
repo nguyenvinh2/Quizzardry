@@ -5,47 +5,39 @@
   string aspnet = "@aspnet";
   Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="container mx-auto text-center">
-    <h1 class="font-weight-bold display-4">QUIZZARDRY</h1>
-</div>
 
-<div id="winner" class="hidden">
-    <ul id="winnerList"></ul>
-  <button id="resetButton">Start a New Game</button>
-</div>
-
-<div class="mx-auto mt-4"id="questions">
-
-</div>
-
-<p id="user-number"></p>
-
-<div class="container">
-  <div class="">&nbsp;</div>
-  <div class="">
-    <div class=""></div>
-    <div class="">
-      <input type="hidden" id="userInput" value="@Model.Player.Name" />
-      <br />
-      Message: <input type="text" id="messageInput" />
-      <input type="button" id="sendButton" value="SendMessage" />
+<div id="data-half">
+    <div class="container mx-auto text-center">
+        <h1 class="font-weight-bold">QUIZZARDRY</h1>
     </div>
-  </div>
-  <div class="">
-    <div class="col-12">
-      <hr />
+
+    <div id="winner" class="hidden">
+        <ul id="winnerList"></ul>
+        <button id="resetButton">Start a New Game</button>
     </div>
-  </div>
-  <div class="">
-      @*<div class="">
-          <ul id="userList"></ul>
+
+    <div class="mx-auto mt-4" id="questions">
+
+    </div>
+
+    <p id="user-number"></p>
+
+    <div class="container">
+        <div class="">
+            <div class=""></div>
+            <div class="">
+                <input type="hidden" id="userInput" value="@Model.Player.Name" />
+                <br />
+                Message: <input type="text" id="messageInput" />
+                <input type="button" id="sendButton" value="SendMessage" />
+            </div>
         </div>
-        <div class="">&nbsp;</div>*@
-      <ul id="messagesList"></ul>
-      @*<div class="">
+        <hr />
+    </div>
+</div>
 
-      </div>*@
-  </div>
+<div id="messageScroll" class="overflow-y">
+    <ul id="messagesList"></ul>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
