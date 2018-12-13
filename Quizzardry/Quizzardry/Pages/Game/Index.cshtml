@@ -1,45 +1,46 @@
 ﻿@page
 @model Quizzardry.Pages.Game.IndexModel
 @{
-    ViewData["Title"] = "Index";
-    string aspnet = "@aspnet";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+  ViewData["Title"] = "Index";
+  string aspnet = "@aspnet";
+  Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h2>Trivia Game of Gaming Trivia</h2>
 
 <div id="winner" class="hidden">
-    <button id="resetButton">Start a New Game</button>
+  <button id="resetButton">Start a New Game</button>
 </div>
 <div id="questions">
 
 </div>
 
+<p id="user-number"></p>
+
 <div class="container">
-    <div class="row">&nbsp;</div>
-    <div class="row">
-        <div class="col-6">&nbsp;</div>
-        <div class="col-6">
-            <input type="hidden" id="userInput" value="@Model.Player.Name" />
-            <input type="hidden" id="userInputGuid" value="@Model.Player.ID" />
-            <br />
-            Message...<input type="text" id="messageInput" />
-            <input type="button" id="sendButton" value="SendMessage" />
-        </div>
+  <div class="row">&nbsp;</div>
+  <div class="row">
+    <div class="col-6"></div>
+    <div class="col-6">
+      <input type="hidden" id="userInput" value="@Model.Player.Name" />
+      <br />
+      Message...<input type="text" id="messageInput" />
+      <input type="button" id="sendButton" value="SendMessage" />
     </div>
-    <div class="row">
-        <div class="col-12">
-            <hr />
-        </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <hr />
     </div>
-    <div class="row">
-        <div class="col-6">
-            <ul id="userList"></ul>
-        </div>
-        <div class="col-6">&nbsp;</div>
-        <div class="col-6">
-            <ul id="messagesList"></ul>
-        </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <ul id="userList"></ul>
     </div>
+    <div class="col-6">&nbsp;</div>
+    <div class="col-6">
+      <ul id="messagesList"></ul>
+    </div>
+  </div>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
