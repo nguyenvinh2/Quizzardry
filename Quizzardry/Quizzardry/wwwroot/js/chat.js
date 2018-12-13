@@ -63,27 +63,6 @@ $(document).ready(function () {
                                     </div>`);
     }
     hideAll(round, userList);
-    //setEventListeners();
-
-    //var currentQuestionId = "question" + round;
-    //$(".questions").hide();
-    //$(`#${currentQuestionId}`).show();
-
-    //if (round > 5) {
-    //    var highScore = 0;
-    //    var userName = "";
-    //    for (let i = 0; i < userList.length; i++) {
-    //        if (userList[i].score > highScore) {
-    //            highScore = userList[i].score;
-    //            userName = userList[i].name;
-    //        }
-    //    };
-    //    $("#winner").prepend(`<h2>Congrats ${userName}! The winning score is ${highScore}!</h2>`);
-    //    $("#winner").removeClass("hidden");
-    //    $("#resetButton").on("click", () => {
-    //        connection.invoke("Reset");
-    //    });
-    //}
   });
 
   function hideAll(round, userList) {
@@ -94,21 +73,17 @@ $(document).ready(function () {
     $(`#${currentQuestionId}`).show();
 
     if (round > 5) {
-      var highScore = 0;
-      var userName = "";
-      for (let i = 0; i < userList.length; i++) {
-        if (userList[i].score > highScore) {
-          highScore = userList[i].score;
-          userName = userList[i].name;
+
+        userList.sort((a, b) => b.score - a.score);
+        for (let i = 0; i < userList.length; i++) {
+            $("#winnerList").append(`<li>${userList[i].name}:${userList[i].score} points</li >`)
         }
-      }
-      $("#winner").prepend(`<h2>Congrats ${userName}! The winning score is ${highScore}!</h2>`);
       $("#winner").removeClass("hidden");
       $("#resetButton").on("click", () => {
         connection.invoke("Reset");
       });
     }
-  }
+    }
 
   connection.on("ReceiveMessage", function (user, message) {
     var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
