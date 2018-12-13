@@ -13,12 +13,14 @@ using Quizzardry.Models;
 using Quizzardry.Hubs;
 using Quizzardry.Models.Interfaces;
 using Microsoft.AspNetCore.SignalR;
+using Quizzardry.Data;
 
 namespace Quizzardry.Pages.Game
 {
     public class IndexModel : PageModel
     {
-        public Player Player{ get; set; }
+        public Player Player { get; set; }
+
         public IActionResult OnGet()
         {
             var userJSON = HttpContext.Session.GetString("user");

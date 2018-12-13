@@ -20,21 +20,56 @@ namespace Quizzardry.Data
                 new Questions
                 {
                     ID = 1,
-                    Question = "Who is Neth's favorite artist?",
-                    Answer1 = "REM",
-                    Answer2 = "Drake",
-                    Answer3 = "Busta Rhymes",
-                    CorrectAnswer = "Taylor Swift"
+                    Question = "In REM's \"What's the Frequency, Kenneth\" who is the titular Kenneth?",
+                    Answer1 = "Physicist Kenneth Bainbridge",
+                    Answer2 = "Actor Kenneth Branaugh",
+                    Answer3 = "Singer Kenneth \"Babyface\" Edmonds",
+                    CorrectAnswer = "Nobody!"
                 },
-
                 new Questions
                 {
                     ID = 2,
-                    Question = "Who is Vinh's favorite person?",
-                    Answer1 = "Suzy",
-                    Answer2 = "Amanda",
-                    Answer3 = "Kendra",
-                    CorrectAnswer = "TRE"
+                    Question = "The Euro-pop dance hit \"What is Love\" is probably still stuck in your head. Whose fault is that?",
+                    Answer1 = "Quad City DJs",
+                    Answer2 = "C + C Music Factory",
+                    Answer3 = "The Baha Men",
+                    CorrectAnswer = "Haddaway"
+                },
+                new Questions
+                {
+                    ID = 3,
+                    Question = "Covered by Phil Collins in 1982, what group released \"You Can\'t Hurry Love\" in 1966?",
+                    Answer1 = "The Ronnettes",
+                    Answer2 = "The Shirellas",
+                    Answer3 = "The Byrds",
+                    CorrectAnswer = "The Supremes"
+                },
+                new Questions
+                {
+                    ID = 4,
+                    Question = "Which Star Trek TOS cast member never appeared in an epsiode of Star Trek: TNG?",
+                    Answer1 = "Leonard Nemoy",
+                    Answer2 = "James Doohan",
+                    Answer3 = "DeForest Kelley",
+                    CorrectAnswer = "George Takei"
+                },
+                new Questions
+                {
+                    ID = 5,
+                    Question = "Which of the following structures is the tallest?",
+                    Answer1 = "The Space Needle",
+                    Answer2 = "The Statue of Liberty",
+                    Answer3 = "The Washington Monument",
+                    CorrectAnswer = "The Gateway Arch"
+                },
+                new Questions
+                {
+                    ID = 6,
+                    Question = "What was the name of the first commercially released video game?",
+                    Answer1 = "Pong",
+                    Answer2 = "Space Invaders",
+                    Answer3 = "Asteroids",
+                    CorrectAnswer = "Computer Space"
                 }
             );
         }

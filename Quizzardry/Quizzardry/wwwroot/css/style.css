@@ -53,6 +53,9 @@ main {
   margin: 15px auto;
   width: 85%; }
 
+.hidden {
+  display: none; }
+
 @media (max-width: 800px) {
   main {
     margin: 0;
