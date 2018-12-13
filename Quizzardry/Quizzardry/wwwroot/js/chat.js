@@ -10,7 +10,6 @@ $(document).ready(function () {
 
   connection.start().then(function () {
     var user = document.getElementById("userInput").value;
-    //var userGuid = document.getElementById("userInputGuid").value;
     if (userCount === 0) {
       connection.invoke("CreateQuestions", user);
     }
@@ -33,19 +32,11 @@ $(document).ready(function () {
 
 
   connection.on("ReceiveUser", function (userList, questions, round) {
-    console.log(round);
     $(`#user-number`).text(`Users Join: ${userList.length}. Admin ${userList[0].name}`);
-    var users = document.getElementById("userList");
-    while (users.firstChild) {
-      users.removeChild(users.firstChild);
-    }
-    for (let i = 0; i < userList.length; i++) {
-      var encodedMsg = userList[i].name + " has joined the game." + " Score is " + userList[i].score;
-      console.log(userList[i]);
-      var li = document.createElement("li");
-      li.textContent = encodedMsg;
-      document.getElementById("userList").appendChild(li);
-    }
+    var encodedMsg = userList[userList.length - 1].name + " has joined the game.";
+    var li = document.createElement("li");
+    li.textContent = encodedMsg;
+    $("#messagesList").append(li);
     $("#questions").empty();
     for (let i = 0; i < questions.length; i++) {
       $("#questions").append(`<div id="question${i + 1}" class="questions text-center">
@@ -70,7 +61,7 @@ $(document).ready(function () {
                                         </div>
                                         <div class="d-block mt-2">
                                             <label>
-                                                ${questions[i].correctAnswer}
+                                                ${questions[i].answer4}
                                                 <input name="answer-options" type="radio" value="d" />
                                             </label>
                                         </div>
@@ -113,9 +104,10 @@ $(document).ready(function () {
   });
 
   document.getElementById("sendButton").addEventListener("click", function (event) {
-    var user = document.getElementById("userInput").value;
-    var message = document.getElementById("messageInput").value;
-    connection.invoke("SendMessage", user, message).catch(function (err) {
+    var $user = $("#userInput").val();
+    var $message = $("#messageInput").val();
+    $("#messageInput").val("");
+    connection.invoke("SendMessage", $user, $message).catch(function (err) {
       return console.error(err.toString());
     });
     event.preventDefault();
@@ -124,7 +116,6 @@ $(document).ready(function () {
   function setEventListeners(round) {
     $(".voteButton").click(function () {
       var $answer = $('input[name=answer-options]:checked').val();
-      //var userGuid = document.getElementById("userInputGuid").value;
       connection.invoke("AddPoints", $answer, round).catch(function (err) {
         return console.error(err.toString());
       });
