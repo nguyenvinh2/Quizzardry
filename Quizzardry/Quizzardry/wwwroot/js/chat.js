@@ -74,7 +74,8 @@ $(document).ready(function () {
 
     if (round > 5) {
 
-        userList.sort((a, b) => b.score - a.score);
+      userList.sort((a, b) => b.score - a.score);
+      $(`#winnerList`).empty();
         for (let i = 0; i < userList.length; i++) {
             $("#winnerList").append(`<li>${userList[i].name}:${userList[i].score} points</li >`)
         }
