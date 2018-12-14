@@ -44,7 +44,6 @@ namespace Quizzardry.Hubs
             _connections.Remove(Context.ConnectionId);
             List<Player> userList = _connections.GetList();
             await Clients.All.SendAsync("ReceiveUser", userList, Questions, Round);
-            await Clients.All.SendAsync("UserJoin", userList);
             await MakeAdmin();
         }
 
