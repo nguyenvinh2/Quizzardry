@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Quizzardry.Data;
 using Quizzardry.Models;
 using Xunit;
+using System;
 
 namespace QuizzardryTest
 {
@@ -15,7 +16,7 @@ namespace QuizzardryTest
         {
             Player newPlayer = new Player()
             {
-                ID = 1,
+                ID = "1",
                 RoomID = "1",
                 Name = "Farkus",
                 Score = 500,
@@ -23,6 +24,45 @@ namespace QuizzardryTest
             };
 
             Assert.True(newPlayer.Score == 500);
+        }
+        /// <summary>
+        /// Test the getter for Question
+        /// </summary>
+        [Fact]
+        public void GetQuestionTest()
+        {
+            Questions newQuestion = new Questions()
+            {
+                ID = 1,
+                Question = "In REM's \"What's the Frequency, Kenneth\" who is the titular Kenneth?",
+                Answer1 = "Physicist Kenneth Bainbridge",
+                Answer2 = "Actor Kenneth Branaugh",
+                Answer3 = "Singer Kenneth \"Babyface\" Edmonds",
+                Answer4 = "Nobody!",
+                CorrectAnswer = "d"
+            };
+            Assert.True(newQuestion.Answer4 == "Nobody!");
+        }
+
+        /// <summary>
+        /// Test the setter for Question
+        /// </summary>
+        [Fact]
+        public void SetQuestionTest()
+        {
+            Questions newQuestion = new Questions()
+            {
+                ID = 1,
+                Question = "In REM's \"What's the Frequency, Kenneth\" who is the titular Kenneth?",
+                Answer1 = "Physicist Kenneth Bainbridge",
+                Answer2 = "Actor Kenneth Branaugh",
+                Answer3 = "Singer Kenneth \"Babyface\" Edmonds",
+                Answer4 = "Nobody!",
+                CorrectAnswer = "d"
+            };
+
+            newQuestion.CorrectAnswer = "e";
+            Assert.True(newQuestion.CorrectAnswer == "e");
         }
 
         /// <summary>
@@ -33,7 +73,7 @@ namespace QuizzardryTest
         {
             Player newPlayer = new Player()
             {
-                ID = 1,
+                ID = "1",
                 RoomID = "1",
                 Name = "Farkus",
                 Score = 500,
@@ -57,7 +97,7 @@ namespace QuizzardryTest
             {
                 Player newPlayer = new Player()
                 {
-                    ID = 1,
+                    ID = "1",
                     RoomID = "1",
                     Name = "Farkus",
                     Score = 500,
@@ -67,7 +107,7 @@ namespace QuizzardryTest
                 context.Add(newPlayer);
                 await context.SaveChangesAsync();
 
-                Player foundPlayer = await context.Players.FirstOrDefaultAsync(player => player.ID == 1);
+                Player foundPlayer = await context.Players.FirstOrDefaultAsync(player => player.ID == "1");
                 Assert.True(foundPlayer.Name == "Farkus");
             }
         }
@@ -84,7 +124,7 @@ namespace QuizzardryTest
             {
                 Player newPlayer = new Player()
                 {
-                    ID = 1,
+                    ID = "1",
                     RoomID = "1",
                     Name = "Farkus",
                     Score = 500,
@@ -94,11 +134,11 @@ namespace QuizzardryTest
                 context.Add(newPlayer);
                 await context.SaveChangesAsync();
 
-                Player foundPlayer = await context.Players.FirstOrDefaultAsync(player => player.ID == 1);
+                Player foundPlayer = await context.Players.FirstOrDefaultAsync(player => player.ID == "1");
                 foundPlayer.Score = 250;
 
                 context.Update(foundPlayer);
-                Player updatedPlayer = await context.Players.FirstOrDefaultAsync(player => player.ID == 1);
+                Player updatedPlayer = await context.Players.FirstOrDefaultAsync(player => player.ID == "1");
 
                 Assert.True(updatedPlayer.Score == 250);
             }
@@ -116,7 +156,7 @@ namespace QuizzardryTest
             {
                 Player newPlayer = new Player()
                 {
-                    ID = 1,
+                    ID = "1",
                     RoomID = "1",
                     Name = "Farkus",
                     Score = 500,
@@ -126,12 +166,12 @@ namespace QuizzardryTest
                 context.Add(newPlayer);
                 await context.SaveChangesAsync();
 
-                Player foundPlayer = await context.Players.FirstOrDefaultAsync(player => player.ID == 1);
+                Player foundPlayer = await context.Players.FirstOrDefaultAsync(player => player.ID == "1");
                 foundPlayer.Score = 250;
 
                 context.Remove(foundPlayer);
                 await context.SaveChangesAsync();
-                Player deletedPlayer = await context.Players.FirstOrDefaultAsync(player => player.ID == 1);
+                Player deletedPlayer = await context.Players.FirstOrDefaultAsync(player => player.ID == "1");
 
                 Assert.True(deletedPlayer == null);
             }
