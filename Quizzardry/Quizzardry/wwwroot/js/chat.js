@@ -72,7 +72,7 @@ $(document).ready(function () {
                                     </div>
                                  </div>`);
     }
-    //hideAll(round, userList);
+    hideAll(round, userList);
   });
 
     connection.on("TallyPoints", (round, userList) => {
