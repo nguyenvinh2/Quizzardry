@@ -54,6 +54,14 @@ h1 {
 
     main {
         width: 100%;
+        height: 90%;
+    }
+
+    .container {
+        height: 90%;
+    }
+
+    .sub-main {
         height: 100%;
     }
 
