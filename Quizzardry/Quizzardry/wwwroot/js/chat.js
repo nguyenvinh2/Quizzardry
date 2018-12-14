@@ -31,10 +31,10 @@ $(document).ready(function () {
   });
 
     connection.on("UserJoin", (userList) => {
-        $(`#user-number`).append(`<p>Users Joined: ${userList.length} || Admin: ${userList[0].name}</p>`);
+        $("#user-number").empty();
+        $("#user-number").append(`<p>Users Joined: ${userList.length} || Admin: ${userList[0].name}</p>`);
         $("#messagesList").prepend(`<li><span class="text-primary"><strong>${userList[userList.length - 1].name}</strong> has joined the game.</span></li>`);
-
-    })
+    });
 
   connection.on("ReceiveUser", function (userList, questions, round) {
     
