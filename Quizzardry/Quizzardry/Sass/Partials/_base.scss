@@ -49,6 +49,12 @@ h1 {
     height: auto;
 }
 
+#winnerList {
+    overflow-y: auto;
+    height: 35vh;
+    padding: 0;
+}
+
 @media (max-width: 720px) {
     main {
         width: 100%;
