@@ -31,6 +31,18 @@ namespace Quizzardry.Hubs
             }
         }
 
+        public void Remove(T key)
+        {
+            lock (_connections)
+            {
+                Player connections;
+                if (_connections.TryGetValue(key, out connections))
+                {
+                    _connections.Remove(key);
+                }
+            }
+        }
+
         public Dictionary<T, Player> GetConnections()
         {
             return _connections;

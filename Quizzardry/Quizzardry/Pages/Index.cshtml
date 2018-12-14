@@ -5,12 +5,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-Hey there
+<div class="container mx-auto text-center">
+    <h1 class="font-weight-bold">QUIZZARDRY</h1>
+    <h5>https://quizzardry.azurewebsites.net/</h5>
+    <p class="mt-3">Welcome to Quizzardry!</p>
+    <p>Go ahead and enter your name to jump in a game and answer some trivia!</p>
+</div>
 
-<div class="col-6">
+
+<div class="container mt-5 text-center d-flex flex-column">
   <form method="post">
-    User..........<input asp-for="Player.Name" type="text"/>
-    <br />
-    <button class="login-info manage" type="submit" asp-page-handler="update">Enter</button>
+    <p class="font-weight-bold">Name</p>
+    <input class="d-block mx-auto mt-2" asp-for="Player.Name" type="text" required/>
+    <button class="d-block mx-auto mt-2 btn" type="submit" asp-page-handler="update">Enter</button>
   </form>
 </div>

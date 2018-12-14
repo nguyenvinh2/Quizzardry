@@ -14,7 +14,7 @@ namespace Quizzardry.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.3-rtm-32065")
+                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -33,6 +33,9 @@ namespace Quizzardry.Migrations
                     b.Property<string>("Answer3")
                         .IsRequired();
 
+                    b.Property<string>("Answer4")
+                        .IsRequired();
+
                     b.Property<string>("CorrectAnswer")
                         .IsRequired();
 
@@ -44,12 +47,12 @@ namespace Quizzardry.Migrations
                     b.ToTable("Questions");
 
                     b.HasData(
-                        new { ID = 1, Answer1 = "Physicist Kenneth Bainbridge", Answer2 = "Actor Kenneth Branaugh", Answer3 = "Singer Kenneth \"Babyface\" Edmonds", CorrectAnswer = "Nobody!", Question = "In REM's \"What's the Frequency, Kenneth\" who is the titular Kenneth?" },
-                        new { ID = 2, Answer1 = "Quad City DJs", Answer2 = "C + C Music Factory", Answer3 = "The Baha Men", CorrectAnswer = "Haddaway", Question = "The Euro-pop dance hit \"What is Love\" is probably still stuck in your head. Whose fault is that?" },
-                        new { ID = 3, Answer1 = "The Ronnettes", Answer2 = "The Shirellas", Answer3 = "The Byrds", CorrectAnswer = "The Supremes", Question = "Covered by Phil Collins in 1982, what group released \"You Can't Hurry Love\" in 1966?" },
-                        new { ID = 4, Answer1 = "Leonard Nemoy", Answer2 = "James Doohan", Answer3 = "DeForest Kelley", CorrectAnswer = "George Takei", Question = "Which Star Trek TOS cast member never appeared in an epsiode of Star Trek: TNG?" },
-                        new { ID = 5, Answer1 = "The Space Needle", Answer2 = "The Statue of Liberty", Answer3 = "The Washington Monument", CorrectAnswer = "The Gateway Arch", Question = "Which of the following structures is the tallest?" },
-                        new { ID = 6, Answer1 = "Pong", Answer2 = "Space Invaders", Answer3 = "Asteroids", CorrectAnswer = "Computer Space", Question = "What was the name of the first commercially released video game?" }
+                        new { ID = 1, Answer1 = "Physicist Kenneth Bainbridge", Answer2 = "Actor Kenneth Branaugh", Answer3 = "Singer Kenneth \"Babyface\" Edmonds", Answer4 = "Nobody!", CorrectAnswer = "d", Question = "In REM's \"What's the Frequency, Kenneth\" who is the titular Kenneth?" },
+                        new { ID = 2, Answer1 = "Quad City DJs", Answer2 = "C + C Music Factory", Answer3 = "Haddaway", Answer4 = "The Baha Men", CorrectAnswer = "c", Question = "The Euro-pop dance hit \"What is Love\" is probably still stuck in your head. Whose fault is that?" },
+                        new { ID = 3, Answer1 = "The Ronnettes", Answer2 = "The Supremes", Answer3 = "The Byrds", Answer4 = "The Shirellas", CorrectAnswer = "b", Question = "Covered by Phil Collins in 1982, what group released \"You Can't Hurry Love\" in 1966?" },
+                        new { ID = 4, Answer1 = "George Takei", Answer2 = "James Doohan", Answer3 = "DeForest Kelley", Answer4 = "Leonard Nemoy", CorrectAnswer = "a", Question = "Which Star Trek TOS cast member never appeared in an epsiode of Star Trek: TNG?" },
+                        new { ID = 5, Answer1 = "The Space Needle", Answer2 = "The Statue of Liberty", Answer3 = "The Washington Monument", Answer4 = "The Gateway Arch", CorrectAnswer = "d", Question = "Which of the following structures is the tallest?" },
+                        new { ID = 6, Answer1 = "Pong", Answer2 = "Space Invaders", Answer3 = "Computer Space", Answer4 = "Asteroids", CorrectAnswer = "c", Question = "What was the name of the first commercially released video game?" }
                     );
                 });
 #pragma warning restore 612, 618

@@ -5,40 +5,36 @@
     string aspnet = "@aspnet";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>Trivia Game of Gaming Trivia</h2>
 
-<div id="winner" class="hidden">
-    <button id="resetButton">Start a New Game</button>
-</div>
-<div id="questions">
+<div id="data-half">
+    <div class="container mx-auto text-center">
+        <h1 class="font-weight-bold">QUIZZARDRY</h1>
+        <h5>https://quizzardry.azurewebsites.net/</h5>
+        <div id="user-number">
 
-</div>
-
-<div class="container">
-    <div class="row">&nbsp;</div>
-    <div class="row">
-        <div class="col-6">&nbsp;</div>
-        <div class="col-6">
-            <input type="hidden" id="userInput" value="@Model.Player.Name" />
-            <input type="hidden" id="userInputGuid" value="@Model.Player.ID" />
-            <br />
-            Message...<input type="text" id="messageInput" />
-            <input type="button" id="sendButton" value="SendMessage" />
         </div>
     </div>
-    <div class="row">
-        <div class="col-12">
-            <hr />
-        </div>
+
+    <div id="winner" class="hidden text-center">
+        <ul class="list-unstyled" id="winnerList"></ul>
+        <button class="btn" id="resetButton">Start a New Game</button>
     </div>
-    <div class="row">
-        <div class="col-6">
-            <ul id="userList"></ul>
-        </div>
-        <div class="col-6">&nbsp;</div>
-        <div class="col-6">
-            <ul id="messagesList"></ul>
-        </div>
+
+    <div class="mx-auto mt-4" id="questions">
+
+    </div>
+</div>
+
+<div id="messageScroll" class="overflow-y">
+    <hr />
+    <ul class="list-unstyled" id="messagesList"></ul>
+</div>
+<div class="message-interface">
+    <input type="hidden" id="userInput" value="@Model.Player.Name" />
+    <br />
+    <div class="messageButtons d-flex">
+        <input type="text" id="messageInput" />
+        <input class="btn" type="button" id="sendButton" value="Send" />
     </div>
 </div>
 

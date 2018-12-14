@@ -15,7 +15,7 @@ namespace Quizzardry.Hubs
 {
     public class TriviaHub : Hub
     {
-        private static StorageHub<Guid> _connections = new StorageHub<Guid>();
+        private static StorageHub<string> _connections = new StorageHub<string>();
         private readonly QuestionsDbContext _context;
         public static List<Questions> Questions = new List<Questions>();
         public static int Round = 1;
@@ -30,22 +30,32 @@ namespace Quizzardry.Hubs
             await Clients.All.SendAsync("ReceiveMessage", user, message);
         }
 
-        public async Task SendUser(string user, Guid id)
+        public async Task SendUser(string user)
         {
-            await OnConnected(user, id);
+            await OnConnected(user);
             List<Player> userList = _connections.GetList();
+            await Clients.All.SendAsync("UserJoin", userList);
             await Clients.All.SendAsync("ReceiveUser", userList, Questions, Round);
         }
 
-        public Task OnConnected(string user, Guid id)
+
+        public override async Task OnDisconnectedAsync(Exception exception)
+        {
+            _connections.Remove(Context.ConnectionId);
+            List<Player> userList = _connections.GetList();
+            await Clients.All.SendAsync("ReceiveUser", userList, Questions, Round);
+            await MakeAdmin();
+        }
+
+        public Task OnConnected(string user)
         {
             bool exists = false;
-            Dictionary<Guid, Player> userList = _connections.GetConnections();
-            exists = userList.ContainsKey(id);
+            Dictionary<string, Player> userList = _connections.GetConnections();
+            exists = userList.ContainsKey(Context.ConnectionId);
             if (!exists)
             {
                 Player NewPlayer = new Player();
-                NewPlayer.ID = id;
+                NewPlayer.ID = Context.ConnectionId;
                 NewPlayer.Name = user;
                 NewPlayer.Score = 0;
                 NewPlayer.HasVoted = false;
@@ -55,10 +65,11 @@ namespace Quizzardry.Hubs
             return base.OnConnectedAsync();
         }
 
-        public void AddPoints(Guid userGuid, string answer)
+
+        public void AddPoints(string answer, int round)
         {
-            Player foundPlayer = _connections.GetPlayer(userGuid);
-            if (!foundPlayer.HasVoted && answer == "d")
+            Player foundPlayer = _connections.GetPlayer(Context.ConnectionId);
+            if (!foundPlayer.HasVoted && answer == Questions[round-1].CorrectAnswer)
             {
                 foundPlayer.Score += 100;
             }
@@ -72,13 +83,16 @@ namespace Quizzardry.Hubs
             {
                 player.HasVoted = false;
             }
+            
+            await Clients.All.SendAsync("Vote", Round);
             Round++;
             await Clients.All.SendAsync("ReceiveUser", userList, Questions, Round);
+            await MakeAdmin();
         }
 
-        public async Task CreateQuestions(string user, Guid id)
+        public async Task CreateQuestions(string user)
         {
-            await OnConnected(user, id);
+            await OnConnected(user);
             List<Player> userList = _connections.GetList();
             
             List<Questions> AllQuestions = _context.Questions.ToList();
@@ -91,15 +105,24 @@ namespace Quizzardry.Hubs
                     Questions.Add(AllQuestions[index]);
                 }
             }
+            await Clients.All.SendAsync("UserJoin", userList);
             await Clients.All.SendAsync("ReceiveUser", userList, Questions, Round);
-
+            await MakeAdmin();
         }
 
         public async Task Reset()
         {
-            _connections = new StorageHub<Guid>();
+            _connections = new StorageHub<string>();
+            Questions = new List<Questions>();
             Round = 1;
             await Clients.All.SendAsync("BackHome");
+        }
+
+        public async Task MakeAdmin()
+        {
+            Dictionary<string, Player> userKey = _connections.GetConnections();
+            List<Player> userList = _connections.GetList();
+            await Clients.Client(userKey.Keys.First()).SendAsync("MakeAdmin", Questions, Round, userList);
         }
     }
 }
