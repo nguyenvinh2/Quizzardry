@@ -125,7 +125,7 @@ $(document).ready(function () {
     connection.invoke("AddPoints", $answer, round).catch(function (err) {
       return console.error(err.toString());
     });
-  })
+  });
 
   function setEventListeners() {
     $(".submitButton").off();
