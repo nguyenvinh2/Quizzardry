@@ -301,17 +301,7 @@ namespace Quizzardry.Data
                 new Questions
                 {
                     ID = 29,
-                    Question = "What is Amanda's favorite Animal?",
-                    Answer1 = "Komodo Dragons",
-                    Answer2 = "Dogs",
-                    Answer3 = "Snakes",
-                    Answer4 = "Cats",
-                    CorrectAnswer = "d"
-                },
-                new Questions
-                {
-                    ID = 30,
-                    Question = "What is the most valueable company right now?",
+                    Question = "What is the most valuable company right now?",
                     Answer1 = "Amazon",
                     Answer2 = "Alphabet",
                     Answer3 = "Microsoft",

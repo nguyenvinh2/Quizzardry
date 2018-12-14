@@ -34,7 +34,7 @@ h1 {
 }
 
 #messageScroll ul {
-    height: 25vh;
+    height: 24vh;
     overflow-y: auto;
     text-wrap: normal;
     display: flex;
@@ -48,7 +48,7 @@ h1 {
 }
 
 @media (max-width: 720px) {
-    body{
+    body {
         height: 100%;
     }
 
@@ -69,6 +69,7 @@ h1 {
     #messageScroll ul {
         height: 12vh;
     }
+}
 
 .removeMe {
     display: none;
