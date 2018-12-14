@@ -79,10 +79,10 @@ $(document).ready(function () {
   connection.on("TallyPoints", (round, userList, feedback) => {
     var currentQuestionId = "question" + round;
     if (feedback.includes("right")) {
-      $(`#${currentQuestionId}`).prepend(`<p id="green">${feedback}</p>`);
+      $("#feedback").prepend(`<p id="green">${feedback}</p>`);
       $('#green').delay(5000).fadeOut('slow');
     } else if (feedback.includes("wrong")) {
-      $(`#${currentQuestionId}`).prepend(`<p id="red">${feedback}</p>`);
+      $("#feedback").prepend(`<p id="red">${feedback}</p>`);
       $('#red').delay(5000).fadeOut('slow');
     }
     if (round > 5) {

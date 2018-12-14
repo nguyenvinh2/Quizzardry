@@ -42,7 +42,7 @@ h1 {
 }
 
 #data-half {
-    height: 75%;
+    height: 70%;
 }
 
 #messageScroll ul {
@@ -51,12 +51,12 @@ h1 {
     text-wrap: normal;
     display: flex;
     flex-direction: column-reverse;
+    padding: 0px 20px;
 }
 
 #winnerList {
     overflow-y: auto;
     height: 30%;
-    padding: 0;
 }
 
 @media (max-width: 720px) {
@@ -86,6 +86,7 @@ h1 {
 
     #messageScroll ul {
         height: 12vh;
+        padding: 0px 2px;
     }
 }
 
