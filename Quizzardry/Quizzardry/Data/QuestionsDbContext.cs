@@ -176,7 +176,149 @@ namespace Quizzardry.Data
                     Answer3 = "Big 10",
                     Answer4 = "ACC",
                     CorrectAnswer = "d"
+                },
+
+                new Questions
+                {
+                    ID = 17,
+                    Question = "What is the name of the story Bilbo wrote about his adventures?",
+                    Answer1 = "The Hobbit by Bilbo Baggins",
+                    Answer2 = "A Hobbits Tale by Bilbo Baggins",
+                    Answer3 = "Into the West by Bilbo Baggins",
+                    Answer4 = "The Silmarillion by Bilbo Baggins",
+                    CorrectAnswer = "b"
+                },
+                new Questions
+                {
+                    ID = 18,
+                    Question = "By what name do the Elves call Gandalf?",
+                    Answer1 = "Gandalf the Grey",
+                    Answer2 = "Mithrandir",
+                    Answer3 = "The Grey Pilgrim",
+                    Answer4 = "Incanus",
+                    CorrectAnswer = "b"
+                },
+                new Questions
+                {
+                    ID = 19,
+                    Question = "Who becomes king of Rohan after Theoden dies on Pelennor Fields?",
+                    Answer1 = "Eowyn",
+                    Answer2 = "Eaoden",
+                    Answer3 = "Aragorn",
+                    Answer4 = "Eomer",
+                    CorrectAnswer = "d"
+                },
+                new Questions
+                {
+                    ID = 20,
+                    Question = "How many wizards were there in Middle-Earth?",
+                    Answer1 = "2",
+                    Answer2 = "4",
+                    Answer3 = "5",
+                    Answer4 = "7",
+                    CorrectAnswer = "c"
+                },
+                new Questions
+                {
+                    ID = 21,
+                    Question = "What was Gandalf's name in the Silmarillion?",
+                    Answer1 = "Curumo",
+                    Answer2 = "Olorin",
+                    Answer3 = "Alatar",
+                    Answer4 = "Pallando",
+                    CorrectAnswer = "b"
+                },
+                new Questions
+                {
+                    ID = 22,
+                    Question = "When did Gandalf come to Middle-Earth?",
+                    Answer1 = "1000 Third Age",
+                    Answer2 = "He was always there",
+                    Answer3 = "2000 Third Age",
+                    Answer4 = "1600 Second Age",
+                    CorrectAnswer = "a"
+                },
+                new Questions
+                {
+                    ID = 23,
+                    Question = "Which Ring did Cirdan give to Gandalf?",
+                    Answer1 = "Vilya, the Ring of Air",
+                    Answer2 = "One Ring to Rule Them All",
+                    Answer3 = "Nenya, the Ring of Water",
+                    Answer4 = "Narya, the Ring of Fire",
+                    CorrectAnswer = "d"
+                },
+                new Questions
+                {
+                    ID = 24,
+                    Question = "In The Hobbit, how did Gandalf save the Dwarves and Bilbo from the trolls?",
+                    Answer1 = "Made the Trolls go away to get water",
+                    Answer2 = "Rushed in and killed all three trolls",
+                    Answer3 = "Made his voice like the trolls' voices, and made them argue until they turned to stone",
+                    Answer4 = "Called the wrath of the Valar on them",
+                    CorrectAnswer = "c"
+                },
+                new Questions
+                {
+                    ID = 25,
+                    Question = "When did Gandalf meet Aragorn?",
+                    Answer1 = "2956 Third Age",
+                    Answer2 = "2951 Third Age",
+                    Answer3 = "3017 Third Age",
+                    Answer4 = "2980 Third Age",
+                    CorrectAnswer = "a"
+                },
+                new Questions
+                {
+                    ID = 26,
+                    Question = "What is the difference between an object and a class?",
+                    Answer1 = "An object is an instance of a class",
+                    Answer2 = "A class is an instance of an object",
+                    Answer3 = "How would I know?",
+                    Answer4 = "Ojbects can be overridden while classes cannot",
+                    CorrectAnswer = "a"
+                },
+                new Questions
+                {
+                    ID = 27,
+                    Question = "What are the four OOP Principles?",
+                    Answer1 = "Encapsultion, Abstraction, Polymorphism, Inheritance",
+                    Answer2 = "Classes, Abstraction, Polymorphism, Inheritance",
+                    Answer3 = "Classes, Objects, Polymorphism, Inheritance",
+                    Answer4 = "There a only 3 OOP Principles",
+                    CorrectAnswer = "a"
+                },
+                new Questions
+                {
+                    ID = 28,
+                    Question = "What is Amanda's favorite Animal?",
+                    Answer1 = "Komodo Dragons",
+                    Answer2 = "Dogs",
+                    Answer3 = "Snakes",
+                    Answer4 = "Cats",
+                    CorrectAnswer = "d"
+                },
+                new Questions
+                {
+                    ID = 29,
+                    Question = "What is Amanda's favorite Animal?",
+                    Answer1 = "Komodo Dragons",
+                    Answer2 = "Dogs",
+                    Answer3 = "Snakes",
+                    Answer4 = "Cats",
+                    CorrectAnswer = "d"
+                },
+                new Questions
+                {
+                    ID = 30,
+                    Question = "What is the most valueable company right now?",
+                    Answer1 = "Amazon",
+                    Answer2 = "Alphabet",
+                    Answer3 = "Microsoft",
+                    Answer4 = "Apple",
+                    CorrectAnswer = "c"
                 }
+                
             );
         }
 
