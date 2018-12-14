@@ -30,17 +30,17 @@ $(document).ready(function () {
     hideAll(round, userList);
   });
 
-    connection.on("UserJoin", (userList) => {
-        $("#user-number").empty();
-        $("#user-number").append(`<p>Users Joined: ${userList.length} || Admin: ${userList[0].name}</p>`);
-        $("#messagesList").prepend(`<li><span class="text-primary"><strong>${userList[userList.length - 1].name}</strong> has joined the game.</span></li>`);
-    });
+  connection.on("UserJoin", (userList) => {
+    $("#user-number").empty();
+    $("#user-number").append(`<p>Users Joined: ${userList.length} || Admin: ${userList[0].name}</p>`);
+    $("#messagesList").prepend(`<li><span class="text-primary"><strong>${userList[userList.length - 1].name}</strong> has joined the game.</span></li>`);
+  });
 
   connection.on("ReceiveUser", function (userList, questions, round) {
-    
+
     $("#questions").empty();
     for (let i = 0; i < questions.length; i++) {
-        $("#questions").append(`<div id="question${i + 1}" class="questions text-center">
+      $("#questions").append(`<div id="question${i + 1}" class="questions text-center">
                                     <h4>${questions[i].question}</h4>
                                     <div class="d-flex justify-content-center">
                                     <div class="text-left">
@@ -77,31 +77,37 @@ $(document).ready(function () {
 
 
   connection.on("TallyPoints", (round, userList, feedback) => {
-      var currentQuestionId = "question" + round;
-      $(`#${currentQuestionId}`).append(`<p>${feedback}</p>`);
-        if (round > 5) {
-            userList.sort((a, b) => b.score - a.score);
-            $(`#winnerList`).empty();
-            for (let i = 0; i < userList.length; i++) {
-                $("#winnerList").append(`<li>${userList[i].name}: ${userList[i].score} points</li>`)
-            }
-            $("#winner").removeClass("hidden");
-            $("#resetButton").on("click", () => {
-                connection.invoke("Reset");
-            });
-        }
-    });
+    var currentQuestionId = "question" + round;
+    if (feedback.includes("right")) {
+      $(`#${currentQuestionId}`).prepend(`<p id="green">${feedback}</p>`);
+      $('#green').delay(5000).fadeOut('slow');
+    } else if (feedback.includes("wrong")) {
+      $(`#${currentQuestionId}`).prepend(`<p id="red">${feedback}</p>`);
+      $('#red').delay(5000).fadeOut('slow');
+    }
+    if (round > 5) {
+      userList.sort((a, b) => b.score - a.score);
+      $(`#winnerList`).empty();
+      for (let i = 0; i < userList.length; i++) {
+        $("#winnerList").append(`<li>${userList[i].name}: ${userList[i].score} points</li>`);
+      }
+      $("#winner").removeClass("hidden");
+      $("#resetButton").on("click", () => {
+        connection.invoke("Reset");
+      });
+    }
+  });
 
   function hideAll(round, userList) {
     setEventListeners();
     var currentQuestionId = "question" + round;
     $(".questions").hide();
     $(`#${currentQuestionId}`).show();
-    }
+  }
 
   connection.on("ReceiveMessage", function (user, message) {
     var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-      $("#messagesList").prepend(`<li><span class="text-danger font-weight-bold">${user}</span>: ${msg}</li>`);
+    $("#messagesList").prepend(`<li><span class="text-danger font-weight-bold">${user}</span>: ${msg}</li>`);
   });
 
   document.getElementById("sendButton").addEventListener("click", function (event) {
@@ -114,12 +120,12 @@ $(document).ready(function () {
     event.preventDefault();
   });
 
-    connection.on("Vote", (round) => {
-        var $answer = $('input[name=answer-options]:checked').val();
-        connection.invoke("AddPoints", $answer, round).catch(function (err) {
-            return console.error(err.toString());
-        });
-    })
+  connection.on("Vote", (round) => {
+    var $answer = $('input[name=answer-options]:checked').val();
+    connection.invoke("AddPoints", $answer, round).catch(function (err) {
+      return console.error(err.toString());
+    });
+  })
 
   function setEventListeners() {
     $(".submitButton").off();

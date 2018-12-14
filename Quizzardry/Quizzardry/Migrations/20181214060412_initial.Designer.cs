@@ -9,7 +9,7 @@ using Quizzardry.Data;
 namespace Quizzardry.Migrations
 {
     [DbContext(typeof(QuestionsDbContext))]
-    [Migration("20181214042538_initial")]
+    [Migration("20181214060412_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -64,7 +64,21 @@ namespace Quizzardry.Migrations
                         new { ID = 13, Answer1 = "Indiana Pacers", Answer2 = "Mulwaukee Bucks", Answer3 = "Houston Rockets", Answer4 = "New York Knicks", CorrectAnswer = "a", Question = "Which of these teams has never won a championship?" },
                         new { ID = 14, Answer1 = "Montreal Canadiens", Answer2 = "Green Bay Packers", Answer3 = "Boston Celtics", Answer4 = "New York Yankees", CorrectAnswer = "d", Question = "Which Big 4 team has the most championship wins with 27?" },
                         new { ID = 15, Answer1 = "Hulk Hogan", Answer2 = "Andre the Giant", Answer3 = "Randy Savage", Answer4 = "Vince McMahon", CorrectAnswer = "b", Question = "Who was the first person inducted into the WWE Hall of Fame?" },
-                        new { ID = 16, Answer1 = "Pack-12", Answer2 = "SEC", Answer3 = "Big 10", Answer4 = "ACC", CorrectAnswer = "d", Question = "Which conference includes the Duke Blue Devils?" }
+                        new { ID = 16, Answer1 = "Pack-12", Answer2 = "SEC", Answer3 = "Big 10", Answer4 = "ACC", CorrectAnswer = "d", Question = "Which conference includes the Duke Blue Devils?" },
+                        new { ID = 17, Answer1 = "The Hobbit by Bilbo Baggins", Answer2 = "A Hobbits Tale by Bilbo Baggins", Answer3 = "Into the West by Bilbo Baggins", Answer4 = "The Silmarillion by Bilbo Baggins", CorrectAnswer = "b", Question = "What is the name of the story Bilbo wrote about his adventures?" },
+                        new { ID = 18, Answer1 = "Gandalf the Grey", Answer2 = "Mithrandir", Answer3 = "The Grey Pilgrim", Answer4 = "Incanus", CorrectAnswer = "b", Question = "By what name do the Elves call Gandalf?" },
+                        new { ID = 19, Answer1 = "Eowyn", Answer2 = "Eaoden", Answer3 = "Aragorn", Answer4 = "Eomer", CorrectAnswer = "d", Question = "Who becomes king of Rohan after Theoden dies on Pelennor Fields?" },
+                        new { ID = 20, Answer1 = "2", Answer2 = "4", Answer3 = "5", Answer4 = "7", CorrectAnswer = "c", Question = "How many wizards were there in Middle-Earth?" },
+                        new { ID = 21, Answer1 = "Curumo", Answer2 = "Olorin", Answer3 = "Alatar", Answer4 = "Pallando", CorrectAnswer = "b", Question = "What was Gandalf's name in the Silmarillion?" },
+                        new { ID = 22, Answer1 = "1000 Third Age", Answer2 = "He was always there", Answer3 = "2000 Third Age", Answer4 = "1600 Second Age", CorrectAnswer = "a", Question = "When did Gandalf come to Middle-Earth?" },
+                        new { ID = 23, Answer1 = "Vilya, the Ring of Air", Answer2 = "One Ring to Rule Them All", Answer3 = "Nenya, the Ring of Water", Answer4 = "Narya, the Ring of Fire", CorrectAnswer = "d", Question = "Which Ring did Cirdan give to Gandalf?" },
+                        new { ID = 24, Answer1 = "Made the Trolls go away to get water", Answer2 = "Rushed in and killed all three trolls", Answer3 = "Made his voice like the trolls' voices, and made them argue until they turned to stone", Answer4 = "Called the wrath of the Valar on them", CorrectAnswer = "c", Question = "In The Hobbit, how did Gandalf save the Dwarves and Bilbo from the trolls?" },
+                        new { ID = 25, Answer1 = "2956 Third Age", Answer2 = "2951 Third Age", Answer3 = "3017 Third Age", Answer4 = "2980 Third Age", CorrectAnswer = "a", Question = "When did Gandalf meet Aragorn?" },
+                        new { ID = 26, Answer1 = "An object is an instance of a class", Answer2 = "A class is an instance of an object", Answer3 = "How would I know?", Answer4 = "Ojbects can be overridden while classes cannot", CorrectAnswer = "a", Question = "What is the difference between an object and a class?" },
+                        new { ID = 27, Answer1 = "Encapsultion, Abstraction, Polymorphism, Inheritance", Answer2 = "Classes, Abstraction, Polymorphism, Inheritance", Answer3 = "Classes, Objects, Polymorphism, Inheritance", Answer4 = "There a only 3 OOP Principles", CorrectAnswer = "a", Question = "What are the four OOP Principles?" },
+                        new { ID = 28, Answer1 = "Komodo Dragons", Answer2 = "Dogs", Answer3 = "Snakes", Answer4 = "Cats", CorrectAnswer = "d", Question = "What is Amanda's favorite Animal?" },
+                        new { ID = 29, Answer1 = "Komodo Dragons", Answer2 = "Dogs", Answer3 = "Snakes", Answer4 = "Cats", CorrectAnswer = "d", Question = "What is Amanda's favorite Animal?" },
+                        new { ID = 30, Answer1 = "Amazon", Answer2 = "Alphabet", Answer3 = "Microsoft", Answer4 = "Apple", CorrectAnswer = "c", Question = "What is the most valueable company right now?" }
                     );
                 });
 #pragma warning restore 612, 618

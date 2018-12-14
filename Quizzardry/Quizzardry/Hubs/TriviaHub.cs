@@ -76,7 +76,7 @@ namespace Quizzardry.Hubs
             }
             else
             {
-                feedback = $"You did not get the answer right.  Score: {foundPlayer.Score}";
+                feedback = $"You got the answer wrong.  Score: {foundPlayer.Score}";
             }
             foundPlayer.HasVoted = true;
             await Clients.Client(Context.ConnectionId).SendAsync("TallyPoints", Round, _connections.GetList(), feedback);

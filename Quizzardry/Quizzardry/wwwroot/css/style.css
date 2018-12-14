@@ -50,3 +50,12 @@ h1 {
 
 .removeMe {
   display: none; }
+
+#red {
+  color: red;
+}
+
+#green {
+  color: green;
+}
+
