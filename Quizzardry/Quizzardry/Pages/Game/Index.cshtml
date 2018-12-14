@@ -7,7 +7,7 @@
 }
 
 <div id="data-half">
-    <div class="container mx-auto text-center">
+    <div class="mx-auto text-center">
         <h1 class="font-weight-bold">QUIZZARDRY</h1>
         <h5>https://quizzardry.azurewebsites.net/</h5>
         <div id="user-number">
@@ -19,20 +19,22 @@
         <ul class="list-unstyled" id="winnerList"></ul>
         <button class="btn" id="resetButton">Start a New Game</button>
     </div>
+    <div class="p-0 mx-auto my-0" id="feedback">
 
-    <div class="mx-auto mt-4" id="questions">
+    </div>
+    <div class="mx-auto mt-3" id="questions">
 
     </div>
 </div>
 
-<div id="messageScroll" class="overflow-y">
+<div id="messageScroll" class="text-left px-2">
     <hr />
     <ul class="list-unstyled" id="messagesList"></ul>
 </div>
 <div class="message-interface">
     <input type="hidden" id="userInput" value="@Model.Player.Name" />
     <br />
-    <div class="messageButtons d-flex">
+    <div class="messageButtons">
         <input type="text" id="messageInput" />
         <input class="btn" type="button" id="sendButton" value="Send" />
     </div>

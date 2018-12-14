@@ -65,16 +65,30 @@ namespace Quizzardry.Hubs
             return base.OnConnectedAsync();
         }
 
-
-        public void AddPoints(string answer, int round)
+        public async void AddPoints(string answer, int round)
         {
+            string feedback = "";
             Player foundPlayer = _connections.GetPlayer(Context.ConnectionId);
-            if (!foundPlayer.HasVoted && answer == Questions[round-1].CorrectAnswer)
+            if (!foundPlayer.HasVoted && answer == Questions[round - 1].CorrectAnswer)
             {
                 foundPlayer.Score += 100;
+                feedback = $"You got the answer right! Score: {foundPlayer.Score}";
+            }
+            else
+            {
+                feedback = $"You got the answer wrong.  Score: {foundPlayer.Score}";
             }
             foundPlayer.HasVoted = true;
+            if (Round > 5)
+            {
+                await Clients.All.SendAsync("TallyPoints", Round, _connections.GetList(), feedback);
+            }
+            else
+            {
+                await Clients.Client(Context.ConnectionId).SendAsync("TallyPoints", Round, _connections.GetList(), feedback);
+            }
         }
+
 
         public async Task SubmitAnswers()
         {

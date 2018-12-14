@@ -1,52 +1,133 @@
-﻿body {
-  background-color: #f1f1f1; }
+﻿html, body {
+    height: 100%;
+}
+
+body {
+    background-color: #f1f1f1;
+}
 
 main {
-  background-color: #f1e3c0;
-  border-radius: 10px;
-  color: #393e46;
-  display: flex;
-  flex-direction: column;
-  height: 98vh;
-  margin: 1vh auto;
-  width: 50%; }
+    background-color: #f1e3c0;
+    border-radius: 10px;
+    color: #393e46;
+    display: flex;
+    flex-direction: column;
+    margin: 1% auto;
+    width: 56%;
+    height: 96vh;
+}
+
+#red {
+    color: red;
+}
+
+#green {
+    color: green;
+}
 
 .hidden {
-  display: none; }
+    display: none;
+}
 
 h1 {
-  color: #be352a; }
+    color: #be352a;
+}
 
 .btn {
-  background-color: #cccccc; }
-
-#sendButton {
-  width: max-content; }
+    background-color: #cccccc;
+}
 
 #messageInput {
-  width: 90%; }
+    width: 90%;
+}
 
 #data-half {
-  height: 75vh; }
+    height: 70%;
+}
 
 #messageScroll ul {
-  height: 15vh;
-  overflow-y: auto;
-  text-wrap: normal;
-  display: flex;
-  flex-direction: column-reverse; }
-
-.messageInterface {
-  height: auto; }
+    height: 24vh;
+    overflow-y: auto;
+    text-wrap: normal;
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 0px 20px;
+}
 
 #winnerList {
-  overflow-y: auto;
-  height: 35vh;
-  padding: 0; }
+    overflow-y: auto;
+    height: 30%;
+}
 
 @media (max-width: 720px) {
-  main {
-    width: 100%; } }
+    body {
+        height: 100%;
+        background-color: #f1e3c0;
+        font-size: .8em;
+    }
+    h1, h4, h5, li, p, label, button, input, .btn {
+        font-size: .8em;
+    }
+
+    .container {
+        height: 90%;
+        width: 100%;
+    }
+
+    .sub-main {
+        height: 100%;
+    }
+
+    .messageButtons {
+        position: relative;
+        bottom: 3%;
+    }
+
+    #messageInput {
+        width: 82%;
+    }
+
+    #messageScroll ul {
+        height: 12vh;
+        padding: 0px 10px;
+    }
+}
+
+@media (max-width: 475px) {
+    body {
+        height: 100%;
+        background-color: #f1e3c0;
+        font-size: .8em;
+    }
+
+    h1, h4, h5, li, p, label, button, input, .btn {
+        font-size: .6em;
+    }
+
+    .container {
+        height: 90%;
+        width: 100%;
+    }
+
+    .sub-main {
+        height: 100%;
+    }
+
+    .messageButtons {
+        position: relative;
+        bottom: 3%;
+    }
+
+    #messageInput {
+        width: 72%;
+    }
+
+    #messageScroll ul {
+        height: 12vh;
+        padding: 0px 3px;
+    }
+}
 
 .removeMe {
-  display: none; }
+    display: none;
+}
