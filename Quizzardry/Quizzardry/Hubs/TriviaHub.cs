@@ -65,8 +65,7 @@ namespace Quizzardry.Hubs
             return base.OnConnectedAsync();
         }
 
-
-        public void AddPoints(string answer, int round)
+        public async void AddPoints(string answer, int round)
         {
             Player foundPlayer = _connections.GetPlayer(Context.ConnectionId);
             if (!foundPlayer.HasVoted && answer == Questions[round-1].CorrectAnswer)
@@ -74,6 +73,7 @@ namespace Quizzardry.Hubs
                 foundPlayer.Score += 100;
             }
             foundPlayer.HasVoted = true;
+            await Clients.All.SendAsync("TallyPoints", Round, _connections.GetList());
         }
 
         public async Task SubmitAnswers()

@@ -72,8 +72,12 @@ $(document).ready(function () {
                                     </div>
                                  </div>`);
     }
-    hideAll(round, userList);
+    //hideAll(round, userList);
   });
+
+    connection.on("TallyPoints", (round, userList) => {
+        hideAll(round, userList);
+    });
 
   function hideAll(round, userList) {
     setEventListeners();
@@ -119,6 +123,7 @@ $(document).ready(function () {
     })
 
   function setEventListeners() {
+    $(".submitButton").off();
     $(".submitButton").click(function () {
       connection.invoke("SubmitAnswers").catch(function (err) {
         return console.error(err.toString());
