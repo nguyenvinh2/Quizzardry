@@ -75,17 +75,18 @@ $(document).ready(function () {
     hideAll(round, userList);
   });
 
-    connection.on("TallyPoints", (round, userList) => {
-        hideAll(round, userList);
+  connection.on("TallyPoints", (round, userList, feedback) => {
+    var currentQuestionId = "question" + round;
+    $(`#${currentQuestionId}`).append(`<p>${feedback}</p>`);
+
+    hideAll(round, userList);
     });
 
   function hideAll(round, userList) {
     setEventListeners();
-
     var currentQuestionId = "question" + round;
     $(".questions").hide();
     $(`#${currentQuestionId}`).show();
-
     if (round > 5) {
 
       userList.sort((a, b) => b.score - a.score);
