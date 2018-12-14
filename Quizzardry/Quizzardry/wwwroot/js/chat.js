@@ -75,11 +75,21 @@ $(document).ready(function () {
     hideAll(round, userList);
   });
 
-  connection.on("TallyPoints", (round, userList, feedback) => {
-    var currentQuestionId = "question" + round;
-    $(`#${currentQuestionId}`).append(`<p>${feedback}</p>`);
 
-    hideAll(round, userList);
+  connection.on("TallyPoints", (round, userList, feedback) => {
+      var currentQuestionId = "question" + round;
+      $(`#${currentQuestionId}`).append(`<p>${feedback}</p>`);
+        if (round > 5) {
+            userList.sort((a, b) => b.score - a.score);
+            $(`#winnerList`).empty();
+            for (let i = 0; i < userList.length; i++) {
+                $("#winnerList").append(`<li>${userList[i].name}: ${userList[i].score} points</li>`)
+            }
+            $("#winner").removeClass("hidden");
+            $("#resetButton").on("click", () => {
+                connection.invoke("Reset");
+            });
+        }
     });
 
   function hideAll(round, userList) {
@@ -87,18 +97,6 @@ $(document).ready(function () {
     var currentQuestionId = "question" + round;
     $(".questions").hide();
     $(`#${currentQuestionId}`).show();
-    if (round > 5) {
-
-      userList.sort((a, b) => b.score - a.score);
-      $(`#winnerList`).empty();
-        for (let i = 0; i < userList.length; i++) {
-            $("#winnerList").append(`<li>${userList[i].name}: ${userList[i].score} points</li>`)
-        }
-      $("#winner").removeClass("hidden");
-      $("#resetButton").on("click", () => {
-        connection.invoke("Reset");
-      });
-    }
     }
 
   connection.on("ReceiveMessage", function (user, message) {
