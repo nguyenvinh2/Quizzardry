@@ -65,6 +65,9 @@ h1 {
         background-color: #f1e3c0;
         font-size: .8em;
     }
+    h1, h4, h5 {
+        font-size: .8em;
+    }
 
     .container {
         height: 90%;
@@ -86,7 +89,42 @@ h1 {
 
     #messageScroll ul {
         height: 12vh;
-        padding: 0px 2px;
+        padding: 0px 10px;
+    }
+}
+
+@media (max-width: 475px) {
+    body {
+        height: 100%;
+        background-color: #f1e3c0;
+        font-size: .8em;
+    }
+
+    h1, h4, h5 {
+        font-size: .6em;
+    }
+
+    .container {
+        height: 90%;
+        width: 100%;
+    }
+
+    .sub-main {
+        height: 100%;
+    }
+
+    .messageButtons {
+        position: relative;
+        bottom: 3%;
+    }
+
+    #messageInput {
+        width: 72%;
+    }
+
+    #messageScroll ul {
+        height: 12vh;
+        padding: 0px 10px;
     }
 }
 
