@@ -25,17 +25,14 @@ $(document).ready(function () {
 
   connection.on("MakeAdmin", function (questions, round, userList) {
     for (let i = 0; i < questions.length; i++) {
-      $(`#question${i + 1}`).append(`<input type="button" class="submitButton" value="Submit" />`);
+      $(`#question${i + 1}`).append(`<input type="button" class="submitButton btn" value="Submit" />`);
     }
     hideAll(round, userList);
   });
 
     connection.on("UserJoin", (userList) => {
-        $(`#user-number`).text(`Users Join: ${userList.length}. Admin ${userList[0].name}`);
-        var encodedMsg = userList[userList.length - 1].name + " has joined the game.";
-        var li = document.createElement("li");
-        li.textContent = encodedMsg;
-        $("#messagesList").prepend(li);
+        $(`#user-number`).append(`<p>Users Joined: ${userList.length} || Admin: ${userList[0].name}</p>`);
+        $("#messagesList").prepend(`<li><span class="text-primary"><strong>${userList[userList.length - 1].name}</strong> has joined the game.</span></li>`);
 
     })
 
@@ -43,33 +40,37 @@ $(document).ready(function () {
     
     $("#questions").empty();
     for (let i = 0; i < questions.length; i++) {
-      $("#questions").append(`<div id="question${i + 1}" class="questions text-center">
-                                        <h4>${questions[i].question}</h4>
+        $("#questions").append(`<div id="question${i + 1}" class="questions text-center">
+                                    <h4>${questions[i].question}</h4>
+                                    <div class="d-flex justify-content-center">
+                                    <div class="text-left">
                                         <div class="d-block mt-3">
                                             <label>
-                                                ${questions[i].answer1}
                                                 <input name="answer-options" type="radio" value="a" />
+                                                ${questions[i].answer1}
                                             </label>
                                         </div>
                                         <div class="d-block mt-2">
                                             <label>
-                                                ${questions[i].answer2}
                                                 <input name="answer-options" type="radio" value="b" />
+                                                ${questions[i].answer2}
                                             </label>
                                         </div>
                                         <div class="d-block mt-2">
                                             <label>
-                                                ${questions[i].answer3}
                                                 <input name="answer-options" type="radio" value="c" />
+                                                ${questions[i].answer3}
                                             </label>
                                         </div>
                                         <div class="d-block mt-2">
                                             <label>
-                                                ${questions[i].answer4}
                                                 <input name="answer-options" type="radio" value="d" />
+                                                ${questions[i].answer4}
                                             </label>
                                         </div>
-                                    </div>`);
+                                    </div>
+                                    </div>
+                                 </div>`);
     }
     hideAll(round, userList);
   });
@@ -97,10 +98,7 @@ $(document).ready(function () {
 
   connection.on("ReceiveMessage", function (user, message) {
     var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    var encodedMsg = user + " says " + msg;
-    var li = document.createElement("li");
-    li.textContent = encodedMsg;
-    $("#messagesList").prepend(li);
+      $("#messagesList").prepend(`<li><span class="text-danger font-weight-bold">${user}</span>: ${msg}</li>`);
   });
 
   document.getElementById("sendButton").addEventListener("click", function (event) {

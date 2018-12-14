@@ -2,5 +2,9 @@
   {
     "outputFile": "wwwroot/css/style.css",
     "inputFile": "Sass/_main.scss"
+  },
+  {
+    "outputFile": "Sass/Partials/_base.css",
+    "inputFile": "Sass/Partials/_base.scss"
   }
 ]

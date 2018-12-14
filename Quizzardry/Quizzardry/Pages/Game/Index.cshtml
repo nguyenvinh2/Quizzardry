@@ -1,14 +1,18 @@
 ﻿@page
 @model Quizzardry.Pages.Game.IndexModel
 @{
-  ViewData["Title"] = "Index";
-  string aspnet = "@aspnet";
-  Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Index";
+    string aspnet = "@aspnet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div id="data-half">
     <div class="container mx-auto text-center">
         <h1 class="font-weight-bold">QUIZZARDRY</h1>
+        <h5>https://quizzardry.azurewebsites.net/</h5>
+        <div id="user-number">
+
+        </div>
     </div>
 
     <div id="winner" class="hidden">
@@ -19,25 +23,19 @@
     <div class="mx-auto mt-4" id="questions">
 
     </div>
-
-    <p id="user-number"></p>
-
-    <div class="container">
-        <div class="">
-            <div class=""></div>
-            <div class="">
-                <input type="hidden" id="userInput" value="@Model.Player.Name" />
-                <br />
-                Message: <input type="text" id="messageInput" />
-                <input type="button" id="sendButton" value="SendMessage" />
-            </div>
-        </div>
-        <hr />
-    </div>
 </div>
 
 <div id="messageScroll" class="overflow-y">
-    <ul id="messagesList"></ul>
+    <hr />
+    <ul class="list-unstyled" id="messagesList"></ul>
+</div>
+<div class="message-interface">
+    <input type="hidden" id="userInput" value="@Model.Player.Name" />
+    <br />
+    <div class="messageButtons d-flex">
+        <input type="text" id="messageInput" />
+        <input class="btn" type="button" id="sendButton" value="Send" />
+    </div>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
