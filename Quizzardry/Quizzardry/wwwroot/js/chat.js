@@ -80,10 +80,10 @@ $(document).ready(function () {
     var currentQuestionId = "question" + round;
     if (feedback.includes("right")) {
       $("#feedback").prepend(`<p id="green">${feedback}</p>`);
-      $('#green').delay(5000).fadeOut('slow');
+      $('#green').delay(3000).fadeOut('slow');
     } else if (feedback.includes("wrong")) {
       $("#feedback").prepend(`<p id="red">${feedback}</p>`);
-      $('#red').delay(5000).fadeOut('slow');
+      $('#red').delay(3000).fadeOut('slow');
     }
     if (round > 5) {
       userList.sort((a, b) => b.score - a.score);

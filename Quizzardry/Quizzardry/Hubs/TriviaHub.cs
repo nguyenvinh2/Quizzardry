@@ -44,6 +44,7 @@ namespace Quizzardry.Hubs
             _connections.Remove(Context.ConnectionId);
             List<Player> userList = _connections.GetList();
             await Clients.All.SendAsync("ReceiveUser", userList, Questions, Round);
+            await Clients.All.SendAsync("UserJoin", userList);
             await MakeAdmin();
         }
 
@@ -79,8 +80,16 @@ namespace Quizzardry.Hubs
                 feedback = $"You got the answer wrong.  Score: {foundPlayer.Score}";
             }
             foundPlayer.HasVoted = true;
-            await Clients.Client(Context.ConnectionId).SendAsync("TallyPoints", Round, _connections.GetList(), feedback);
+            if (Round > 5)
+            {
+                await Clients.All.SendAsync("TallyPoints", Round, _connections.GetList(), feedback);
+            }
+            else
+            {
+                await Clients.Client(Context.ConnectionId).SendAsync("TallyPoints", Round, _connections.GetList(), feedback);
+            }
         }
+
 
         public async Task SubmitAnswers()
         {
