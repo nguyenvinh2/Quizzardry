@@ -1,5 +1,7 @@
 # Quizzardry: The Game
 
+https://quizzardry.azurewebsites.net/
+
 # Introduction
 
 ###### Quizzardry is a demonstration of the SignalR library for ASP.NET in the form of a trivia game. The purpose of the application is to allow real-time communication between different clients and a central hub located in the web application. Within a single webpage, the hub will send a single question to all connected users and receive back all of the different answers submitted by the users, which will then be processed for near instantaneous feedback.
@@ -77,7 +79,7 @@ The final question will see the non-transformed players wagering a number of poi
 
 #### Stretch goals (Priority)
 
-* Players with the ìtransformedî status will not be eliminated right away. And will still be allowed to answer questions and earn points.
+* Players with the ‚Äútransformed‚Äù status will not be eliminated right away. And will still be allowed to answer questions and earn points.
 * There will be one round near the end of the game in which the playing field will be split up into two teams: toads (players who have missed at least one question) and wizards (players who have not gotten a question wrong up to this point.)
 * If a higher percentage of toads answer the question correctly than the percentage of wizards, then all of the wizards will become toads and all of the toads will turn back into wizards.
 * After this round, toads will be unable to win.
@@ -125,7 +127,7 @@ When faced with conflict, the team will set time aside at the end of our group s
 ### Git Plan
 
 - After initial scaffolding of the master branch, restrictions will be placed on the master branch to prevent single user merging. DevOps allows the branch to be completely locked.
-- Each person will have his/her branch to work on every day. The branch owner is encouraged to do what he/she wants on this branch, including pulling from other userís branch. This will ensure maximum productivity.
+- Each person will have his/her branch to work on every day. The branch owner is encouraged to do what he/she wants on this branch, including pulling from other user‚Äôs branch. This will ensure maximum productivity.
 - At the end of the day, everyone will give status reports on the progress of their work and propose updating the master branch with their own branch. The group will evaluate whether features completed by the user merits being incorporated into the product. If the decision is to merge, the user will open the pull request into a staging branch and it will then be reviewed and approved by the group. Once merged, all users will update their own local branch with the updated repository. The group will verify that the staging branch is functional prior to being merged into master.
 - Ideally, it would require everyone, not including the author, to review a merge. With a group of 4, this would require 3 people to merge into the master branch. Two is required to merge into the staging branch of the assembled application. This ensures everyone can review the changes and is not caught off guard.
 - The last person to give approval during the review process.
